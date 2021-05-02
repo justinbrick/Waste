@@ -1,0 +1,34 @@
+﻿// What happens when we look at something that we want to interact with
+// ie pick up, use, open, close, etc.
+InteractionPrompt {
+    position: absolute;
+    width: 15%;
+    height: 5%;
+    left: 45%;
+    bottom: 5%;
+    color: white;
+    font-size: 24px;
+    background-color: rgba(black, 0.6);
+    align-items: center;
+    opacity: 0;
+
+    .text {
+        left: 5%;
+    }
+
+    .interact_key {
+        display: flex;
+        position: absolute;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        width: 20%;
+        height: 100%;
+        right: 0;
+        background-color: rgba(black, 0.6);
+    }
+
+    &.visible {
+        opacity: 1;
+    }
+}
