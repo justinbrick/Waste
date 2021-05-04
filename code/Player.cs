@@ -9,6 +9,11 @@ namespace Waste
         [Net]
         public int Armor { get; set; }
 
+		public WastePlayer()
+		{
+			Inventory = new WasteInventory( this );
+		}
+
 		public override void Respawn()
 		{
 			SetModel("models/citizen/citizen.vmdl");
@@ -16,7 +21,6 @@ namespace Waste
 			Controller = new WalkController();
 			Animator = new StandardPlayerAnimator();
 			Camera = new FirstPersonCamera();
-
 			EnableAllCollisions = true;
 			EnableDrawing = true;
 			EnableHideInFirstPerson = true;

@@ -8,6 +8,12 @@ namespace Waste
         public string UID { get; protected set; } // Unique ID
         public double Value { get; protected set; } // The value of the item
         public Vector2 Size { get; protected set; } // The size of the item
+        public Vector2 SlotPosition { get; set; } // Where this item is in a container. Null if not in container.
+
+        public static string GenerateUID()
+        {
+            return "";
+        }
 
         public override bool CanCarry(Entity carrier)
         {

@@ -1,0 +1,22 @@
+﻿Slot {
+    background-color: rgba(black, 0.1);
+    width: 80px;
+    height: 80px;
+    border: 1px rgba(white, 0.5);
+
+
+    &:hover {
+        background-color: rgba(black, 0.2);
+    }
+    // Is an item being hovered over this slot invalid?
+    &.invalid {
+        background-color: rgba(red, 0.2);
+    }
+    // Is an item being hovered over this slot valid?
+    &.valid {
+        background-color: rgba(green, 0.2);
+    }
+    // The item that this slot holds
+    .item {
+    }
+}

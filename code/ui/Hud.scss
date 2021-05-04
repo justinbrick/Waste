@@ -2,9 +2,7 @@
     background-color: rgba(black, 0.01); 
 }
 
-
-
-// This shows when we
+// Tab Menu
 WasteMenu {
     position: absolute;
     width: 100%;
@@ -12,31 +10,53 @@ WasteMenu {
     background-color: rgba(black, 0.3);
     opacity: 0;
     transition: opacity 0.1s ease-in;
-
+    // The player at the left.
     PlayerScreen {
         width: 30%;
         height: 90%;
         left: 2.5%;
         top: 5%;
-        background-color: rgba(black, 0.3);
-
+        background-color: rgba(black, 0.5); // TEST
+        // The image of the character, will be animated.
         image {
             background-color: rgba(black, 0);
             width: 80%;
             height: 60%;
-            left: 10%; 
+            left: 10%;
             top: 5%;
             justify-content: center;
         }
-    } 
-
+        // The line separating the image of the character and the current effects.
+        .separator {
+        }
+    }
+    // The inventory to the right.
     .inventory {
-        position: absolute;  
+        overflow: scroll;
+        position: absolute;
         width: 60%;
-        height: 90%; 
+        height: 90%;
         right: 2.5%;
-        top: 5%; 
-        background-color: rgba(black, 0.3);
+        top: 5%;
+        background-color: rgba(black, 0.8);
+
+        .pocket {
+            position: absolute;
+            left: 20px;
+            top: 30px;
+        }
+
+        .backpack {
+            position: absolute;
+            left: 20px;
+            top: 140px;
+        }
+
+        .case {
+            position: absolute;
+            left: 20px;
+            top: 500px;
+        }
     }
 
     &.isOpen {

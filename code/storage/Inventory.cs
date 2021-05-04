@@ -6,13 +6,15 @@ namespace Waste
 {
     class WasteInventory : BaseInventory
     {
-        private Container Pockets;
-        private Container Backpack;
-        private Container Case;
+        public Container Pockets;
+        public Container Backpack;
+        public Container Case;
 
         public WasteInventory(Player player) : base(player)
         {
-
+            Pockets = new Container(4,1);
+			Backpack = new Container( 4,4);
+			Case = new Container(2,2);
         }
 
         public virtual bool HasSpace(Entity ent)
@@ -30,7 +32,6 @@ namespace Waste
             {
 
             }
-
             return false;
         }
 
