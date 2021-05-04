@@ -15,7 +15,7 @@ namespace Waste.UI
             // TODO: implement
         }
 
-        public static ContainerWindow GetWindowRepresentation(Container container)
+        public static ContainerWindow GetWindowRepresentation(Container container, bool isHeadless = false)
         {
 			if ( Host.IsServer ) return null;
             ContainerWindow window = new();

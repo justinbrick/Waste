@@ -12,9 +12,9 @@ namespace Waste
 
         public WasteInventory(Player player) : base(player)
         {
-            Pockets = new Container(4,1);
-			Backpack = new Container( 4,4);
-			Case = new Container(2,2);
+            Pockets = new Container(4,1, true);
+			Backpack = new Container( 4,4, true);
+			Case = new Container(2,2, true);
         }
 
         public virtual bool HasSpace(Entity ent)

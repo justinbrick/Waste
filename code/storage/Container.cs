@@ -16,11 +16,11 @@ namespace Waste
 			Items = new();
 		}
 
-        public Container(int sizeX, int sizeY)  
+        public Container(int sizeX, int sizeY, bool isHeadless = false)  
         {
 			Size = new( sizeX, sizeY );
 			Items = new();
-			Window = ContainerWindow.GetWindowRepresentation(this);
+			Window = ContainerWindow.GetWindowRepresentation(this, isHeadless);
         }
 
 		// Trying to add something in a certain position.
