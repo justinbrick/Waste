@@ -6,7 +6,7 @@ InteractionPrompt {
     height: 5%;
     left: 45%;
     bottom: 5%;
-    color: white;
+    color: white; //
     font-size: 24px;
     background-color: rgba(black, 0.6);
     align-items: center;
@@ -29,6 +29,7 @@ InteractionPrompt {
     }
 
     &.visible {
+        transition: opacity 0.2s ease-in;
         opacity: 1;
     }
 }

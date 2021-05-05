@@ -35,26 +35,37 @@ namespace Waste
         {
             base.Tick();
 			// We want to find if someone is looking at an item.
-			var trace = Trace.Ray( EyePos, EyePos + EyeRot.Forward * 5000 )
+			var trace = Trace.Ray( EyePos, EyePos + EyeRot.Forward * 100 )
 					.UseHitboxes()
 					.Ignore( this )
 					.Radius( 2.0f )
 					.Run();
 
-			if (trace.Hit && IsClient)
+			if (trace.Hit)
 			{
-				if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
+				Log.Info("Hit");
+				if (IsClient)
 				{
-					IsLookingAtItem = false;
-					LastItem = null;
+					if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
+					{
+						IsLookingAtItem = false;
+						LastItem = null;
+						InteractionPrompt.Close();
+					}
+					else if ( item != LastItem ) // If it's the last item then we're still looking at the same thing.
+					{
+						IsLookingAtItem = true;
+						LastItem = item;
+						InteractionPrompt.Open();
+					}
+				}
+			}
+			else
+			{
+				IsLookingAtItem = false;
+				LastItem = null;
+				if ( IsClient && InteractionPrompt.IsOpen )
 					InteractionPrompt.Close();
-				}
-				else if ( item != LastItem ) // If it's the last item then we're still looking at the same thing.
-				{
-					IsLookingAtItem = true;
-					LastItem = item;
-					InteractionPrompt.Open();
-				}
 			}
 
 			if (Input.Pressed(InputButton.Reload))
@@ -67,14 +78,17 @@ namespace Waste
             {
 				WasteMenu.Toggle();
             }
-			if (Input.Pressed(InputButton.Attack1))
-            {
+			if (Input.Pressed(InputButton.Flashlight))
+			{
 				// Did the trace hit something?
-				if (trace.Hit)
+				if ( trace.Hit )
 				{
-
+					if (IsLookingAtItem)
+					{
+						LastItem.OnCarryStart( this );
+					}
 				}
-            }
+			}
         }
     }
 }

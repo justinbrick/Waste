@@ -27,8 +27,6 @@ namespace Waste.UI
             text = Add.Label("Placeholder", "text");
         }
 
-
-
         public static void Open()
         {
             if (WasteMenu.IsOpen) return; // If this is open, ignore all prompts to show this. 

@@ -28,6 +28,10 @@ WasteMenu {
         }
         // The line separating the image of the character and the current effects.
         .separator {
+            position: absolute;
+            width: 100%;
+            height: 2%; 
+
         }
     }
     // The inventory to the right.
@@ -71,7 +75,7 @@ WasteMenu {
 }
 
 // Take a wild guess.
-.literal_dot {
+.literal_dot { 
     position: absolute;
     width: 0.5%;
     height: 0.5%;
