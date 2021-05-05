@@ -15,6 +15,7 @@ Sandbox.Game/Sandbox.Entity.set_EnableShadowInFirstPerson( System.Boolean )
 Sandbox.Game/Sandbox.Entity.set_Inventory( Sandbox.IBaseInventory )
 Sandbox.Game/Sandbox.Entity.set_Parent( Sandbox.Entity )
 Sandbox.Game/Sandbox.Entity.set_WorldPos( Vector3 )
+Sandbox.Game/Sandbox.Entity.Spawn()
 Sandbox.Game/Sandbox.Host.AssertClient()
 Sandbox.Game/Sandbox.Host.get_IsServer()
 Sandbox.Game/Sandbox.IBaseInventory
@@ -115,6 +116,7 @@ Sandbox.System/Vector2..ctor( System.Single, System.Single )
 Sandbox.System/Vector2.get_x()
 Sandbox.System/Vector2.get_y()
 Sandbox.System/Vector3
+Sandbox.System/Vector3..ctor( System.Single, System.Single, System.Single )
 Sandbox.System/Vector3.op_Addition( Vector3, Vector3 )
 Sandbox.System/Vector3.op_Multiply( Vector3, System.Single )
 System.Linq/System.Linq.Enumerable.Any<TSource>( System.Collections.Generic.IEnumerable`1<TSource>, System.Func`2<TSource,System.Boolean> )
@@ -136,14 +138,12 @@ System.Private.CoreLib/System.IDisposable.Dispose()
 System.Private.CoreLib/System.Int32
 System.Private.CoreLib/System.Int64
 System.Private.CoreLib/System.IntPtr
-System.Private.CoreLib/System.NotImplementedException..ctor()
 System.Private.CoreLib/System.Nullable`1
 System.Private.CoreLib/System.Nullable`1..ctor( T )
 System.Private.CoreLib/System.Object
 System.Private.CoreLib/System.Object..ctor()
 System.Private.CoreLib/System.Object.Equals( System.Object, System.Object )
 System.Private.CoreLib/System.Object.GetType()
-System.Private.CoreLib/System.Object.ToString()
 System.Private.CoreLib/System.Runtime.CompilerServices.CompilerGeneratedAttribute
 System.Private.CoreLib/System.Single
 System.Private.CoreLib/System.String

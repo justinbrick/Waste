@@ -10,7 +10,7 @@ namespace Waste.UI
 	{
 		public Vector2 Size { get; private set;}
 		//private Slot[,] Slots; // Fuck
-		bool _headless;
+		private bool _headless;
 		public bool Headless
 		{
 			get => _headless;
@@ -36,6 +36,11 @@ namespace Waste.UI
 		{ 
 			StyleSheet.Load( "/ui/ContainerWindow.scss" );
 			var titleBar = Add.Panel( "title_bar" );
+		}
+
+		public void Close()
+		{
+			if ( !Headless ) return; // If this is not headless we don't want the ability to close it.
 		}
 
 		public static ContainerWindow GetWindowRepresentation(Container container, bool isHeadless = false)

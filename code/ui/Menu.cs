@@ -121,16 +121,20 @@ namespace Waste.UI
         {
             IsOpen = true;
             Current?.SetClass("isOpen", IsOpen);
-            InteractionPrompt.Close();
+			if (InteractionPrompt.IsOpen)
+				InteractionPrompt.Close();
             DoBlur();
         }
 
         public static void Close()
         {
-            IsOpen = false;
+			IsOpen = false;
             Current?.SetClass("isOpen", IsOpen);
             DoBlur();
-        }
+			var player = Player.Local as WastePlayer;
+			if ( player.IsLookingAtItem ) // Are we still looking at an item?
+				InteractionPrompt.Open();
+		}
 
         public static void Toggle()
         {

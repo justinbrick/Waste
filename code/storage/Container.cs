@@ -7,7 +7,7 @@ namespace Waste
 
     public class Container : WasteItem
     {
-        // The size of the container will be the same as the amount of slots it can hold
+		public Vector2 ContainerSize { get; protected set; } // Most cases this will be the same size as the container, but for others we want it to be different.
         public List<WasteItem> Items { get; protected set; } // List of all the items currently in the container.
         public ContainerWindow Window { get; protected set; } // Window representation of this container.
 

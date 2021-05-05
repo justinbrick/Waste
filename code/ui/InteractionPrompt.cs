@@ -33,7 +33,7 @@ namespace Waste.UI
         {
             if (WasteMenu.IsOpen) return; // If this is open, ignore all prompts to show this. 
             IsOpen = true;
-            Current.SetClass("visible", IsOpen);
+            Current?.SetClass("visible", IsOpen);
         }
 
         public static void Close()

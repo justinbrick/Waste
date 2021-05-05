@@ -10,6 +10,8 @@ namespace Waste
         public Vector2 Size { get; protected set; } // The size of the item
         public Vector2 SlotPosition { get; set; } // Where this item is in a container. Null if not in container.
 
+
+		// Generate a UID for each item so that we can store it in a database.
         public static string GenerateUID()
         {
             return "";
@@ -17,17 +19,17 @@ namespace Waste
 
         public override bool CanCarry(Entity carrier)
         {
-            throw new System.NotImplementedException();
+			return base.CanCarry( carrier );
         }
 
         public override void OnCarryDrop(Entity parentEntity)
         {
-            throw new System.NotImplementedException();
+			base.OnCarryDrop(parentEntity);
         }
 
         public override void OnCarryStart(Entity parentEntity)
         {
-            throw new System.NotImplementedException();
-        }
+			base.OnCarryStart(parentEntity);
+		}
     }
 }

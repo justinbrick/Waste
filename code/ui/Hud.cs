@@ -15,6 +15,7 @@ namespace Waste.UI
             RootPanel.AddChild<ChatBox>();
             RootPanel.AddChild<WasteMenu>();
             RootPanel.AddChild<InteractionPrompt>();
+			RootPanel.Add.Panel("literal_dot");
         }
     }
 }

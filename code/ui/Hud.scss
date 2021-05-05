@@ -16,7 +16,7 @@ WasteMenu {
         height: 90%;
         left: 2.5%;
         top: 5%;
-        background-color: rgba(black, 0.5); // TEST
+        background-color: rgba(black, 0.5);
         // The image of the character, will be animated.
         image {
             background-color: rgba(black, 0);
@@ -68,6 +68,16 @@ WasteMenu {
         pointer-events: all;
         opacity: 1;
     }
+}
+
+// Take a wild guess.
+.literal_dot {
+    position: absolute;
+    width: 0.5%;
+    height: 0.5%;
+    background-color: rgba(white, 1);
+    left:  49.5%;
+    top: 49.5%;
 }
 
 
