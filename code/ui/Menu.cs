@@ -6,9 +6,11 @@ namespace Waste.UI
 {
     class WasteMenu : Panel
     {
-        private static Panel Current;
+        private static WasteMenu Current;
         public static bool IsOpen { get; private set; }
         private Panel Inventory;
+		private Panel BackpackSlot;
+		private Panel CaseSlot;
 
         public WasteMenu()
         {
@@ -21,8 +23,8 @@ namespace Waste.UI
             Inventory = Add.Panel("inventory");
 			Inventory.AddChild<Slot>("pocket");
 			Inventory.AddChild<Slot>( "vest" );
-			var backpackSlot = Inventory.AddChild<Slot>( "backpack" );
-			var caseSlot = Inventory.AddChild<Slot>( "case" );
+			BackpackSlot = Inventory.AddChild<Slot>( "backpack" );
+			CaseSlot = Inventory.AddChild<Slot>( "case" );
 
 			// This is actually terrible but I don't know a better way to do this.
 			var pockets = inventory?.Pockets;
@@ -56,7 +58,7 @@ namespace Waste.UI
 				backpackWindow.Style.Position = PositionMode.Absolute;
 				backpackWindow.Style.Left = Length.Pixels( 110 );
 				backpackWindow.Style.Top = Length.Pixels( 165 + vestSize);
-				backpackSlot.Style.Top = Length.Pixels(170 + vestSize);
+				BackpackSlot.Style.Top = Length.Pixels(170 + vestSize);
 			}
 			if (itemCase != null)
 			{
@@ -65,7 +67,7 @@ namespace Waste.UI
 				itemCaseWindow.Style.Position = PositionMode.Absolute;
 				itemCaseWindow.Style.Left = Length.Pixels( 110 );
 				itemCaseWindow.Style.Top = Length.Pixels( 195 + vestSize + backpackSize);
-				caseSlot.Style.Top = Length.Pixels(200 + vestSize + backpackSize);
+				CaseSlot.Style.Top = Length.Pixels(200 + vestSize + backpackSize);
 			}
 		}
 
@@ -73,6 +75,26 @@ namespace Waste.UI
 		// If the sizes have changed on the backpack or similar, then this will resize them properly so they don't break.
 		public static void UpdateSizes()
 		{
+			var inventory = Player.Local.Inventory as WasteInventory;
+			float vestSize = Slot.SLOT_SIZE;
+			if (inventory?.Vest != null)
+			{
+				vestSize = Slot.SLOT_SIZE * inventory.Vest.Size.y; 
+			}
+			float backpackSize = Slot.SLOT_SIZE;
+			if (inventory?.Backpack != null)
+			{
+				var backpackWindow = inventory.Backpack.Window;
+				backpackWindow.Style.Top = Length.Pixels( 165 + vestSize );
+				Current.BackpackSlot.Style.Top = Length.Pixels( 170 + vestSize );
+			}
+			if (inventory?.Case != null)
+			{
+				var caseWindow = inventory.Case.Window;
+				caseWindow.Style.Top = Length.Pixels( 195 + vestSize + backpackSize );
+				Current.CaseSlot.Style.Top = Length.Pixels( 200 + vestSize + backpackSize );
+			}
+
 
 		}
 
