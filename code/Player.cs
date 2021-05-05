@@ -21,7 +21,6 @@ namespace Waste
 		public override void Respawn()
 		{
 			SetModel("models/citizen/citizen.vmdl");
-
 			Controller = new WalkController();
 			Animator = new StandardPlayerAnimator();
 			Camera = new FirstPersonCamera();

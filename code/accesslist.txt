@@ -67,6 +67,8 @@ Sandbox.Game/Sandbox.Trace.Ray( Vector3, Vector3 )
 Sandbox.Game/Sandbox.Trace.Run()
 Sandbox.Game/Sandbox.Trace.UseHitboxes( System.Boolean )
 Sandbox.Game/Sandbox.TraceResult
+Sandbox.Game/Sandbox.UI.ButtonEvent
+Sandbox.Game/Sandbox.UI.ButtonEvent.get_Button()
 Sandbox.Game/Sandbox.UI.Construct.ImageConstructor.Image( Sandbox.UI.Construct.PanelCreator, System.String, System.String )
 Sandbox.Game/Sandbox.UI.Construct.LabelConstructor.Label( Sandbox.UI.Construct.PanelCreator, System.String, System.String )
 Sandbox.Game/Sandbox.UI.Construct.PanelCreator
@@ -77,10 +79,13 @@ Sandbox.Game/Sandbox.UI.Label.set_Text( System.String )
 Sandbox.Game/Sandbox.UI.Panel
 Sandbox.Game/Sandbox.UI.Panel..ctor()
 Sandbox.Game/Sandbox.UI.Panel.AddChild<T>( System.String )
+Sandbox.Game/Sandbox.UI.Panel.Focus()
 Sandbox.Game/Sandbox.UI.Panel.get_Add()
 Sandbox.Game/Sandbox.UI.Panel.get_Style()
+Sandbox.Game/Sandbox.UI.Panel.OnButtonEvent( Sandbox.UI.ButtonEvent )
 Sandbox.Game/Sandbox.UI.Panel.OnDeleted()
 Sandbox.Game/Sandbox.UI.Panel.OnEvent( System.String )
+Sandbox.Game/Sandbox.UI.Panel.set_AcceptsFocus( System.Boolean )
 Sandbox.Game/Sandbox.UI.Panel.set_Parent( Sandbox.UI.Panel )
 Sandbox.Game/Sandbox.UI.Panel.SetClass( System.String, System.Boolean )
 Sandbox.Game/Sandbox.UI.PanelStyle
@@ -147,6 +152,7 @@ System.Private.CoreLib/System.Object.GetType()
 System.Private.CoreLib/System.Runtime.CompilerServices.CompilerGeneratedAttribute
 System.Private.CoreLib/System.Single
 System.Private.CoreLib/System.String
+System.Private.CoreLib/System.String.op_Equality( System.String, System.String )
 System.Private.CoreLib/System.Type
 System.Private.CoreLib/System.Type.op_Equality( System.Type, System.Type )
 System.Private.CoreLib/System.Void

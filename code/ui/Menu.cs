@@ -19,6 +19,7 @@ namespace Waste.UI
 			
             Current = this;
             IsOpen = false;
+			AcceptsFocus = false;
             AddChild<PlayerScreen>();
             Inventory = Add.Panel("inventory");
 			Inventory.AddChild<Slot>("pocket");
@@ -71,7 +72,6 @@ namespace Waste.UI
 			}
 		}
 
-
 		// If the sizes have changed on the backpack or similar, then this will resize them properly so they don't break.
 		public static void UpdateSizes()
 		{
@@ -94,14 +94,21 @@ namespace Waste.UI
 				caseWindow.Style.Top = Length.Pixels( 195 + vestSize + backpackSize );
 				Current.CaseSlot.Style.Top = Length.Pixels( 200 + vestSize + backpackSize );
 			}
-
-
 		}
 
-        // Blurs the screen
-        // TODO: This runs like shit
-        // Find something better
-        private static void DoBlur()
+		public override void OnButtonEvent( ButtonEvent e )
+		{
+			base.OnButtonEvent( e );
+			if (e.Button == "tab" && IsOpen)
+			{
+				Close();
+			}
+		}
+
+		// Blurs the screen
+		// TODO: This runs like shit
+		// Find something better
+		private static void DoBlur()
         {
             var player = Player.Local;
             if (player == null) return;
@@ -116,11 +123,13 @@ namespace Waste.UI
                 player.GetActiveCamera().DoFPoint = 0;
             }
         }
-        
+
         public static void Open()
         {
             IsOpen = true;
             Current?.SetClass("isOpen", IsOpen);
+			Current.AcceptsFocus = true;
+			Current.Focus();
 			if (InteractionPrompt.IsOpen)
 				InteractionPrompt.Close();
             DoBlur();
@@ -130,6 +139,8 @@ namespace Waste.UI
         {
 			IsOpen = false;
             Current?.SetClass("isOpen", IsOpen);
+			Current.AcceptsFocus = false;
+			Current.Focus();
             DoBlur();
 			var player = Player.Local as WastePlayer;
 			if ( player.IsLookingAtItem ) // Are we still looking at an item?
