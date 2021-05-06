@@ -3,7 +3,7 @@
 namespace Waste
 {
 
-	// TODO: Move this all over to WasteItem
+	// TODO: Don't move this all over.
     partial class WasteWeapon : WasteItem, IPlayerControllable
     {
 		public virtual AmmoType AmmoType => AmmoType.Pistol;
@@ -40,6 +40,26 @@ namespace Waste
 			PickupTrigger.WorldPos = WorldPos;
 		}
 
+		public override void ActiveStart( Entity ent )
+		{
+			base.ActiveStart( ent );
+		}
+
+		public override void ActiveEnd( Entity ent, bool dropped )
+		{
+			base.ActiveEnd( ent, dropped );
+		}
+
+		public override void OnCarryStart( Entity parentEntity )
+		{
+			base.OnCarryStart( parentEntity );
+		}
+
+		public override void OnCarryDrop( Entity parentEntity )
+		{
+			base.OnCarryDrop( parentEntity );
+		}
+
 		public virtual void Reload()
 		{
 			if ( IsReloading )
@@ -62,7 +82,7 @@ namespace Waste
 			// TODO: Implement
 			return false;
 		}
-		// Блят
+
 		public virtual bool CanPrimaryAttack()
 		{
 			// TODO: Implement 

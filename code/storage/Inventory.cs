@@ -14,7 +14,7 @@ namespace Waste
         public WasteInventory(Player player) : base(player)
         {
             Pockets = new Container(4, 1, true);
-			Vest = new Container(4, 4, true);
+			Vest = new Container(6, 4, true);
 			Backpack = new Container( 4, 8, true);
 			Case = new Container(2, 2, true);
         }

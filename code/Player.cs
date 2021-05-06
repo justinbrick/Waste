@@ -43,7 +43,6 @@ namespace Waste
 
 			if (trace.Hit)
 			{
-				Log.Info("Hit");
 				if (IsClient)
 				{
 					if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
@@ -86,6 +85,7 @@ namespace Waste
 					if (IsLookingAtItem)
 					{
 						LastItem.OnCarryStart( this );
+						LastItem.ActiveStart(this);
 					}
 				}
 			}

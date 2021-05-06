@@ -4,6 +4,6 @@ namespace Waste
 {
     class Pistol : WasteWeapon
     {
-
+		
     }
 }

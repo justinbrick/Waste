@@ -16,16 +16,29 @@ namespace Waste
 		{
 			base.Spawn();
 			SetModel( ModelPath );
-			
 		}
 
-		
+		public override void ActiveStart( Entity ent )
+		{
+			base.ActiveStart( ent );
+		}
+
+		public override void ActiveEnd( Entity ent, bool dropped )
+		{
+			base.ActiveEnd( ent, dropped );
+		}
 
 		// Generate a UID for each item so that we can store it in a database.
 		public static string GenerateUID()
         {
             return "";
         }
+
+		// TODO: Implement
+		public virtual bool Use(Entity user)
+		{
+			return false;
+		}
 
         public override bool CanCarry(Entity carrier)
         {

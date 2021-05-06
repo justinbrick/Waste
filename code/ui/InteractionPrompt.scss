@@ -29,7 +29,7 @@ InteractionPrompt {
     }
 
     &.visible {
-        transition: opacity 0.2s ease-in;
+        transition: opacity 0.1s ease-in;
         opacity: 1;
     }
 }

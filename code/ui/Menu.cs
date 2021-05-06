@@ -16,10 +16,9 @@ namespace Waste.UI
         {
 			var player = Player.Local;
 			var inventory = player.Inventory as WasteInventory;
-			
-            Current = this;
+
+			Current = this;
             IsOpen = false;
-			AcceptsFocus = false;
             AddChild<PlayerScreen>();
             Inventory = Add.Panel("inventory");
 			Inventory.AddChild<Slot>("pocket");

@@ -1,9 +1,15 @@
 Sandbox.Engine/Sandbox.ClientRpcAttribute
+Sandbox.Game/Sandbox.AnimEntity.GetBoolAnimParam( System.String )
 Sandbox.Game/Sandbox.AnimEntity.SetAnimParam( System.String, System.Boolean )
+Sandbox.Game/Sandbox.AnimSceneObject
+Sandbox.Game/Sandbox.AnimSceneObject..ctor( Sandbox.Model, Transform )
+Sandbox.Game/Sandbox.AnimSceneObject.SetAnimParam( System.String, System.Boolean )
+Sandbox.Game/Sandbox.AnimSceneObject.Update( System.Single )
 Sandbox.Game/Sandbox.Camera
 Sandbox.Game/Sandbox.Camera.set_DoFBlurSize( System.Single )
 Sandbox.Game/Sandbox.Camera.set_DoFPoint( System.Single )
 Sandbox.Game/Sandbox.Entity
+Sandbox.Game/Sandbox.Entity.ActiveStart( Sandbox.Entity )
 Sandbox.Game/Sandbox.Entity.get_Inventory()
 Sandbox.Game/Sandbox.Entity.get_IsClient()
 Sandbox.Game/Sandbox.Entity.get_IsServer()
@@ -52,11 +58,10 @@ Sandbox.Game/Sandbox.Player.GetActiveCamera()
 Sandbox.Game/Sandbox.PlayerAnimator
 Sandbox.Game/Sandbox.PlayerController
 Sandbox.Game/Sandbox.Prediction.get_FirstTime()
-Sandbox.Game/Sandbox.SceneObject
-Sandbox.Game/Sandbox.SceneObject..ctor( Sandbox.Model, Transform )
 Sandbox.Game/Sandbox.SceneWorld
 Sandbox.Game/Sandbox.SceneWorld..ctor()
 Sandbox.Game/Sandbox.SceneWorld.SetCurrent( Sandbox.SceneWorld )
+Sandbox.Game/Sandbox.Time.get_Now()
 Sandbox.Game/Sandbox.TimeSince
 Sandbox.Game/Sandbox.TimeSince.op_Implicit( Sandbox.TimeSince )
 Sandbox.Game/Sandbox.TimeSince.op_Implicit( System.Single )
@@ -88,6 +93,7 @@ Sandbox.Game/Sandbox.UI.Panel.OnEvent( System.String )
 Sandbox.Game/Sandbox.UI.Panel.set_AcceptsFocus( System.Boolean )
 Sandbox.Game/Sandbox.UI.Panel.set_Parent( Sandbox.UI.Panel )
 Sandbox.Game/Sandbox.UI.Panel.SetClass( System.String, System.Boolean )
+Sandbox.Game/Sandbox.UI.Panel.Tick()
 Sandbox.Game/Sandbox.UI.PanelStyle
 Sandbox.Game/Sandbox.UI.PanelStyle.Dirty()
 Sandbox.Game/Sandbox.UI.PositionMode
