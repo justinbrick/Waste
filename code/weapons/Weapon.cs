@@ -30,14 +30,9 @@ namespace Waste
 		[NetPredicted]
 		public TimeSince TimeSinceDeployed { get; set; }
 
-		public PickupTrigger PickupTrigger { get; protected set; }
-
 		public override void Spawn()
 		{
 			base.Spawn();
-			PickupTrigger = new PickupTrigger();
-			PickupTrigger.Parent = this;
-			PickupTrigger.WorldPos = WorldPos;
 		}
 
 		public override void ActiveStart( Entity ent )

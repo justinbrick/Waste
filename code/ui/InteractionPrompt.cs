@@ -29,13 +29,14 @@ namespace Waste.UI
 
         public static void Open()
         {
-            if (WasteMenu.IsOpen) return; // If this is open, ignore all prompts to show this. 
+            if (WasteMenu.IsOpen || Host.IsServer) return; // If this is open, ignore all prompts to show this. 
             IsOpen = true;
             Current?.SetClass("visible", IsOpen);
         }
 
         public static void Close()
         {
+			if ( Host.IsServer ) return;
             IsOpen = false;
             Current?.SetClass("visible", IsOpen);
         }

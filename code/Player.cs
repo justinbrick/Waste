@@ -43,20 +43,17 @@ namespace Waste
 
 			if (trace.Hit)
 			{
-				if (IsClient)
+				if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
 				{
-					if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
-					{
-						IsLookingAtItem = false;
-						LastItem = null;
-						InteractionPrompt.Close();
-					}
-					else if ( item != LastItem ) // If it's the last item then we're still looking at the same thing.
-					{
-						IsLookingAtItem = true;
-						LastItem = item;
-						InteractionPrompt.Open();
-					}
+					IsLookingAtItem = false;
+					LastItem = null;
+					InteractionPrompt.Close();
+				}
+				else if ( item != LastItem ) // If it's the last item then we're still looking at the same thing.
+				{
+					IsLookingAtItem = true;
+					LastItem = item;
+					InteractionPrompt.Open();
 				}
 			}
 			else
@@ -67,7 +64,7 @@ namespace Waste
 					InteractionPrompt.Close();
 			}
 
-			if (Input.Pressed(InputButton.Reload))
+			if (Input.Pressed(InputButton.Reload) && IsServer)
 			{
 				var pistol = new Pistol();
 				pistol.Spawn();
@@ -79,13 +76,13 @@ namespace Waste
             }
 			if (Input.Pressed(InputButton.Flashlight))
 			{
+				if ( IsClient ) return;
 				// Did the trace hit something?
 				if ( trace.Hit )
 				{
 					if (IsLookingAtItem)
 					{
-						LastItem.OnCarryStart( this );
-						LastItem.ActiveStart(this);
+						Inventory.Add(LastItem, true);
 					}
 				}
 			}

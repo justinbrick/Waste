@@ -15,12 +15,16 @@ namespace Waste
 		public override void Spawn()
 		{
 			base.Spawn();
+			EnableTouch = false;
+			EnableTouchPersists = false;
+			CollisionGroup = CollisionGroup.Debris;
 			SetModel( ModelPath );
 		}
 
 		public override void ActiveStart( Entity ent )
 		{
 			base.ActiveStart( ent );
+			ent.ActiveChild = this;
 		}
 
 		public override void ActiveEnd( Entity ent, bool dropped )

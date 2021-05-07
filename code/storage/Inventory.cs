@@ -30,11 +30,9 @@ namespace Waste
 
         public override bool Add(Entity ent, bool makeActive = false)
         {
-            if (ent is WasteItem item && HasSpace(item))
-            {
-
-            }
-            return false;
+			if ( ent == null ) return false; // Does this entity even exist?
+			if ( Owner.ActiveChild != null ) return false; // Does the owner already have an active item?
+			return base.Add( ent, makeActive );
         }
 
         public bool IsCarryingType(Type t)

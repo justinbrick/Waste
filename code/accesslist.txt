@@ -8,30 +8,34 @@ Sandbox.Game/Sandbox.AnimSceneObject.Update( System.Single )
 Sandbox.Game/Sandbox.Camera
 Sandbox.Game/Sandbox.Camera.set_DoFBlurSize( System.Single )
 Sandbox.Game/Sandbox.Camera.set_DoFPoint( System.Single )
+Sandbox.Game/Sandbox.CollisionGroup
 Sandbox.Game/Sandbox.Entity
-Sandbox.Game/Sandbox.Entity.ActiveStart( Sandbox.Entity )
+Sandbox.Game/Sandbox.Entity.get_ActiveChild()
 Sandbox.Game/Sandbox.Entity.get_Inventory()
 Sandbox.Game/Sandbox.Entity.get_IsClient()
 Sandbox.Game/Sandbox.Entity.get_IsServer()
 Sandbox.Game/Sandbox.Entity.get_Owner()
-Sandbox.Game/Sandbox.Entity.get_WorldPos()
+Sandbox.Game/Sandbox.Entity.set_ActiveChild( Sandbox.Entity )
 Sandbox.Game/Sandbox.Entity.set_EnableDrawing( System.Boolean )
 Sandbox.Game/Sandbox.Entity.set_EnableHideInFirstPerson( System.Boolean )
 Sandbox.Game/Sandbox.Entity.set_EnableShadowInFirstPerson( System.Boolean )
 Sandbox.Game/Sandbox.Entity.set_Inventory( Sandbox.IBaseInventory )
-Sandbox.Game/Sandbox.Entity.set_Parent( Sandbox.Entity )
 Sandbox.Game/Sandbox.Entity.set_WorldPos( Vector3 )
 Sandbox.Game/Sandbox.Entity.Spawn()
 Sandbox.Game/Sandbox.Host.AssertClient()
 Sandbox.Game/Sandbox.Host.get_IsServer()
 Sandbox.Game/Sandbox.IBaseInventory
+Sandbox.Game/Sandbox.IBaseInventory.Add( Sandbox.Entity, System.Boolean )
 Sandbox.Game/Sandbox.InputButton
 Sandbox.Game/Sandbox.Light
 Sandbox.Game/Sandbox.Light.Point( Vector3, System.Single, Color )
 Sandbox.Game/Sandbox.Model
 Sandbox.Game/Sandbox.ModelEntity
 Sandbox.Game/Sandbox.ModelEntity.GetModel()
+Sandbox.Game/Sandbox.ModelEntity.set_CollisionGroup( Sandbox.CollisionGroup )
 Sandbox.Game/Sandbox.ModelEntity.set_EnableAllCollisions( System.Boolean )
+Sandbox.Game/Sandbox.ModelEntity.set_EnableTouch( System.Boolean )
+Sandbox.Game/Sandbox.ModelEntity.set_EnableTouchPersists( System.Boolean )
 Sandbox.Game/Sandbox.ModelEntity.SetModel( System.String )
 Sandbox.Game/Sandbox.NetRead
 Sandbox.Game/Sandbox.NetRead.IsGroup( Sandbox.NetVarGroup )
