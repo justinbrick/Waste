@@ -2,8 +2,6 @@
 
 namespace Waste
 {
-
-	// TODO: Don't move this all over.
     partial class WasteWeapon : WasteItem, IPlayerControllable
     {
 		public virtual AmmoType AmmoType => AmmoType.Pistol;
@@ -182,7 +180,6 @@ namespace Waste
 		}
 	}
 
-
 	// Ammo types
 	public enum AmmoType
 	{
@@ -193,6 +190,4 @@ namespace Waste
 		Shotgun = 5,
 		Sniper = 6
 	}
-
-
 }

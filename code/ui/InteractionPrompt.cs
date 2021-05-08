@@ -24,7 +24,7 @@ namespace Waste.UI
             IsOpen = false;
             StyleSheet.Load("/ui/InteractionPrompt.scss");
             Add.Panel("interact_key").Add.Label("F");
-            text = Add.Label("Placeholder", "text");
+            text = Add.Label("Pickup", "text"); // TODO: Change prompt based on interaction
         }
 
         public static void Open()
@@ -34,7 +34,7 @@ namespace Waste.UI
             Current?.SetClass("visible", IsOpen);
         }
 
-        public static void Close()
+		public static void Close()
         {
 			if ( Host.IsServer ) return;
             IsOpen = false;

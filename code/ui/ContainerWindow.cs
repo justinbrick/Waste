@@ -9,7 +9,7 @@ namespace Waste.UI
 	public class ContainerWindow : Panel
 	{
 		public Vector2 Size { get; private set;}
-		//private Slot[,] Slots; // Fuck
+		private Slot[,] slots;
 		private bool _headless;
 		public bool Headless
 		{
@@ -47,17 +47,20 @@ namespace Waste.UI
         {
 			if ( Host.IsServer ) return null; // Server isn't supposed to be messing with this stuff.
             ContainerWindow window = new(container);
+			window.slots = new Slot[(int)container.Size.x, (int)container.Size.y];
 			window.Size = container.Size;
             window.Style.Width = Length.Pixels(Slot.SLOT_SIZE * container.Size.x + 12);
             window.Style.Height = Length.Pixels(Slot.SLOT_SIZE * container.Size.y + 12);
 			window.Headless = isHeadless;
+
             for (int x = 0; x < container.Size.x; ++x )
 			{
 				for (int y = 0; y < container.Size.y; ++y )
 				{
-					window.AddChild<Slot>( "slot" ); // Add this as slot class.
+					window.slots[x,y] = window.AddChild<Slot>( "slot" ); // Add this as slot class.
 				}
 			}
+
 			// TODO: Query items from database and place them into backpack.
             return window;
         }

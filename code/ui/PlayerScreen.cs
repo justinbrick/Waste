@@ -47,7 +47,6 @@ namespace Waste.UI
 		public override void OnDeleted()
 		{
 			base.OnDeleted();
-
 			sceneCapture?.Delete();
 			sceneCapture = null;
 		}
