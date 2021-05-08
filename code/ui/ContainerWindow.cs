@@ -9,7 +9,6 @@ namespace Waste.UI
 	public class ContainerWindow : Panel
 	{
 		public Vector2 Size { get; private set;}
-		private Slot[,] slots;
 		private bool _headless;
 		public bool Headless
 		{
@@ -17,9 +16,9 @@ namespace Waste.UI
 			set
 			{
 				if ( value )
-					Style.Height = Length.Pixels( Slot.SLOT_SIZE * Size.y + 12);
+					Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 12);
 				else
-					Style.Height = Length.Pixels( Slot.SLOT_SIZE * Size.y + 27 );
+					Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 27 );
 
 				SetClass( "isHeadless", value );
 				_headless = value;
@@ -47,18 +46,14 @@ namespace Waste.UI
         {
 			if ( Host.IsServer ) return null; // Server isn't supposed to be messing with this stuff.
             ContainerWindow window = new(container);
-			window.slots = new Slot[(int)container.Size.x, (int)container.Size.y];
 			window.Size = container.Size;
-            window.Style.Width = Length.Pixels(Slot.SLOT_SIZE * container.Size.x + 12);
-            window.Style.Height = Length.Pixels(Slot.SLOT_SIZE * container.Size.y + 12);
+            window.Style.Width = Length.Pixels(SlotWindow.SLOT_SIZE * container.Size.x + 12);
+            window.Style.Height = Length.Pixels(SlotWindow.SLOT_SIZE * container.Size.y + 12);
 			window.Headless = isHeadless;
 
-            for (int x = 0; x < container.Size.x; ++x )
+            foreach (Slot slot in container.Slots)
 			{
-				for (int y = 0; y < container.Size.y; ++y )
-				{
-					window.slots[x,y] = window.AddChild<Slot>( "slot" ); // Add this as slot class.
-				}
+				slot.Window.Parent = window;
 			}
 
 			// TODO: Query items from database and place them into backpack.

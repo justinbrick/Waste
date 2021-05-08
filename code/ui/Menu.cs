@@ -21,10 +21,10 @@ namespace Waste.UI
             IsOpen = false;
             AddChild<PlayerScreen>();
             Inventory = Add.Panel("inventory");
-			Inventory.AddChild<Slot>("pocket");
-			Inventory.AddChild<Slot>( "vest" );
-			BackpackSlot = Inventory.AddChild<Slot>( "backpack" );
-			CaseSlot = Inventory.AddChild<Slot>( "case" );
+			Inventory.AddChild<SlotWindow>("pocket");
+			Inventory.AddChild<SlotWindow>( "vest" );
+			BackpackSlot = Inventory.AddChild<SlotWindow>( "backpack" );
+			CaseSlot = Inventory.AddChild<SlotWindow>( "case" );
 
 			// This is actually terrible but I don't know a better way to do this.
 			var pockets = inventory?.Pockets;
@@ -39,20 +39,20 @@ namespace Waste.UI
 				pocketWindow.Style.Left = Length.Pixels( 110 );
 				pocketWindow.Style.Top = Length.Pixels( 25 );
 			}
-			float vestSize = Slot.SLOT_SIZE;
+			float vestSize = SlotWindow.SLOT_SIZE;
 			if ( vest != null )
 			{
-				vestSize = vest.Size.y * Slot.SLOT_SIZE;
+				vestSize = vest.Size.y * SlotWindow.SLOT_SIZE;
 				var vestWindow = vest.Window;
 				vestWindow.Parent = Inventory;
 				vestWindow.Style.Position = PositionMode.Absolute;
 				vestWindow.Style.Left = Length.Pixels( 110 );
 				vestWindow.Style.Top = Length.Pixels( 135 );
 			}
-			float backpackSize = Slot.SLOT_SIZE;
+			float backpackSize = SlotWindow.SLOT_SIZE;
 			if (backpack != null)
 			{
-				backpackSize = backpack.Size.y * Slot.SLOT_SIZE;
+				backpackSize = backpack.Size.y * SlotWindow.SLOT_SIZE;
 				var backpackWindow = backpack.Window;
 				backpackWindow.Parent = Inventory;
 				backpackWindow.Style.Position = PositionMode.Absolute;
@@ -75,12 +75,12 @@ namespace Waste.UI
 		public static void UpdateSizes()
 		{
 			var inventory = Player.Local.Inventory as WasteInventory;
-			float vestSize = Slot.SLOT_SIZE;
+			float vestSize = SlotWindow.SLOT_SIZE;
 			if (inventory?.Vest != null)
 			{
-				vestSize = Slot.SLOT_SIZE * inventory.Vest.Size.y; 
+				vestSize = SlotWindow.SLOT_SIZE * inventory.Vest.Size.y; 
 			}
-			float backpackSize = Slot.SLOT_SIZE;
+			float backpackSize = SlotWindow.SLOT_SIZE;
 			if (inventory?.Backpack != null)
 			{
 				var backpackWindow = inventory.Backpack.Window;

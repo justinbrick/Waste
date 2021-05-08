@@ -4,16 +4,16 @@ using Sandbox.UI.Construct;
 namespace Waste.UI
 {
     // Each slot in a container
-    class Slot : Panel
+    public class SlotWindow : Panel
     {
 		public static readonly int SLOT_SIZE = 80; // The size of each slot in pixels.
 		public bool? Valid; // Is there a valid item hovering over this?
         public Container SlotParent;
 
-        public Slot()
+        public SlotWindow()
         {
 			Valid = null;
-            StyleSheet.Load("/ui/Slot.scss");
+            StyleSheet.Load("/ui/SlotWindow.scss");
         }
 
 		public override void Tick()
