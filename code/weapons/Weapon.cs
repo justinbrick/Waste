@@ -2,7 +2,7 @@
 
 namespace Waste
 {
-    partial class WasteWeapon : WasteItem, IPlayerControllable
+    public partial class WasteWeapon : WasteItem, IPlayerControllable
     {
 		public virtual AmmoType AmmoType => AmmoType.Pistol;
 		public virtual int ClipSize => 16;

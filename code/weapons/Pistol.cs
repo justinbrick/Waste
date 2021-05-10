@@ -2,13 +2,13 @@
 
 namespace Waste
 {
-    class Pistol : WasteWeapon
+    public class Pistol : WasteWeapon
     {
 		public override string ID => "waste_pistol";
 
-		public Pistol()
+		public Pistol() : base ()
 		{
-			UID = GenerateUID();
+			Size = new Vector2(2, 1);
 		}
-    }
+	}
 }

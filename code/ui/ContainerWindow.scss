@@ -8,6 +8,12 @@ ContainerWindow {
     background-color: rgba(black, 0.1);
     border: 1px rgba(black, 0.5);
     padding: 5px;
+
+    // The icons for items that will be in this container.
+    .icon {
+        background-color: rgba(black, 0);
+    }
+
     .slot {
         position: relative;
         top: 15px;

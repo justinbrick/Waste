@@ -35,4 +35,10 @@
 
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="ui\SlotWindow.scss">
+      <DependentUpon>SlotWindow.cs</DependentUpon>
+    </None>
+  </ItemGroup>
+
 </Project>

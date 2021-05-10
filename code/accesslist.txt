@@ -32,6 +32,7 @@ Sandbox.Game/Sandbox.InputButton
 Sandbox.Game/Sandbox.Light
 Sandbox.Game/Sandbox.Light.Point( Vector3, System.Single, Color )
 Sandbox.Game/Sandbox.Model
+Sandbox.Game/Sandbox.Model.Load( System.String )
 Sandbox.Game/Sandbox.ModelEntity
 Sandbox.Game/Sandbox.ModelEntity.GetModel()
 Sandbox.Game/Sandbox.ModelEntity.RemoveCollisionLayer( Sandbox.CollisionLayer )
@@ -65,6 +66,8 @@ Sandbox.Game/Sandbox.Player.GetActiveCamera()
 Sandbox.Game/Sandbox.PlayerAnimator
 Sandbox.Game/Sandbox.PlayerController
 Sandbox.Game/Sandbox.Prediction.get_FirstTime()
+Sandbox.Game/Sandbox.SceneObject
+Sandbox.Game/Sandbox.SceneObject..ctor( Sandbox.Model, Transform )
 Sandbox.Game/Sandbox.SceneWorld
 Sandbox.Game/Sandbox.SceneWorld..ctor()
 Sandbox.Game/Sandbox.SceneWorld.SetCurrent( Sandbox.SceneWorld )
@@ -86,7 +89,6 @@ Sandbox.Game/Sandbox.UI.Construct.LabelConstructor.Label( Sandbox.UI.Construct.P
 Sandbox.Game/Sandbox.UI.Construct.PanelCreator
 Sandbox.Game/Sandbox.UI.Construct.PanelCreator.Panel( System.String )
 Sandbox.Game/Sandbox.UI.Image
-Sandbox.Game/Sandbox.UI.Image..ctor()
 Sandbox.Game/Sandbox.UI.Image.SetTexture( System.String )
 Sandbox.Game/Sandbox.UI.Label
 Sandbox.Game/Sandbox.UI.Label.set_Text( System.String )
@@ -148,6 +150,11 @@ System.Private.CoreLib/System.Boolean
 System.Private.CoreLib/System.Collections.Generic.IEnumerable`1
 System.Private.CoreLib/System.Collections.Generic.List`1
 System.Private.CoreLib/System.Collections.Generic.List`1..ctor()
+System.Private.CoreLib/System.Collections.Generic.List`1.Add( T )
+System.Private.CoreLib/System.Collections.Generic.List`1.GetEnumerator()
+System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator
+System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator.get_Current()
+System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator.MoveNext()
 System.Private.CoreLib/System.Diagnostics.DebuggerBrowsableAttribute
 System.Private.CoreLib/System.Double
 System.Private.CoreLib/System.Exception..ctor( System.String )

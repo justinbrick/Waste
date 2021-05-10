@@ -34,8 +34,17 @@ namespace Waste
 		// Trying to add something in a certain position.
 		public bool AddItem(WasteItem item, Vector2 position)
 		{
-			// Todo: Implement
-			return false;
+			if ( !CanAddItem( item, position ) ) return false;
+
+			for (int x = 0; x < item.Size.x; ++x )
+			{
+				for (int y = 0; y < item.Size.y; ++y )
+				{
+
+				}
+			}
+
+			return true;
 		}
 
 		public bool AddItem(WasteItem item)
@@ -56,7 +65,7 @@ namespace Waste
 			{
 				for ( int itemY = 0; itemY < item.Size.y; ++itemY)
 				{
-					if ( Slots[(int)position.x-1 + itemX,(int) position.y + itemY].HasItem ) return false;
+					if ( Slots[(int)position.x-1 + itemX,(int) position.y-1 + itemY].HasItem ) return false;
 				}
 			}
 			return true;
@@ -64,7 +73,7 @@ namespace Waste
 
 		public bool CanAddItem(WasteItem item )
         {
-			var pos = new Vector2();
+			Vector2 pos = new();
 			for (int slotX = 0; slotX < ContainerSize.x; ++slotX )
 			{
 				for (int slotY = 0; slotY < ContainerSize.y; ++slotY )

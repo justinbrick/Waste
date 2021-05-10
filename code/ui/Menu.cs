@@ -23,6 +23,10 @@ namespace Waste.UI
             Inventory = Add.Panel("inventory");
 			Inventory.AddChild<SlotWindow>("pocket");
 			Inventory.AddChild<SlotWindow>( "vest" );
+			var icon = Icon.GenerateIcon(new Pistol());
+			icon.Parent = Inventory;
+			icon.Style.Width = Length.Pixels( 160 );
+			icon.Style.Height = Length.Pixels( 80 );
 			BackpackSlot = Inventory.AddChild<SlotWindow>( "backpack" );
 			CaseSlot = Inventory.AddChild<SlotWindow>( "case" );
 
