@@ -41,6 +41,7 @@ Sandbox.Game/Sandbox.ModelEntity.set_EnableAllCollisions( System.Boolean )
 Sandbox.Game/Sandbox.ModelEntity.set_EnableTouch( System.Boolean )
 Sandbox.Game/Sandbox.ModelEntity.set_EnableTouchPersists( System.Boolean )
 Sandbox.Game/Sandbox.ModelEntity.SetModel( System.String )
+Sandbox.Game/Sandbox.Mouse.get_Position()
 Sandbox.Game/Sandbox.NetRead
 Sandbox.Game/Sandbox.NetRead.IsGroup( Sandbox.NetVarGroup )
 Sandbox.Game/Sandbox.NetRead.ReadData<T>()
@@ -89,7 +90,6 @@ Sandbox.Game/Sandbox.UI.Construct.LabelConstructor.Label( Sandbox.UI.Construct.P
 Sandbox.Game/Sandbox.UI.Construct.PanelCreator
 Sandbox.Game/Sandbox.UI.Construct.PanelCreator.Panel( System.String )
 Sandbox.Game/Sandbox.UI.Image
-Sandbox.Game/Sandbox.UI.Image.SetTexture( System.String )
 Sandbox.Game/Sandbox.UI.Label
 Sandbox.Game/Sandbox.UI.Label.set_Text( System.String )
 Sandbox.Game/Sandbox.UI.Panel
@@ -180,6 +180,7 @@ System.Private.CoreLib/System.Single
 System.Private.CoreLib/System.String
 System.Private.CoreLib/System.String.Concat( System.String, System.String )
 System.Private.CoreLib/System.String.op_Equality( System.String, System.String )
+System.Private.CoreLib/System.String.op_Inequality( System.String, System.String )
 System.Private.CoreLib/System.Type
 System.Private.CoreLib/System.Type.op_Equality( System.Type, System.Type )
 System.Private.CoreLib/System.Void

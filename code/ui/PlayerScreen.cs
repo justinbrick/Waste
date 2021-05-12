@@ -24,7 +24,6 @@ namespace Waste.UI
 				sceneCapture = SceneCapture.Create("player_view", 512, 512);
 				sceneCapture.SetCamera(Vector3.Up * 40 + CamAngles.Direction * -100, CamAngles, 45);
 			}
-
 			Add.Image("scene:player_view");
 		}
 

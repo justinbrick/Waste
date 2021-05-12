@@ -8,17 +8,14 @@ namespace Waste.UI
 	// Visual Representation of each container
 	public class ContainerWindow : Panel
 	{
-		public Vector2 Size { get; private set;}
+		public Vector2 Size { get; private set; }
 		private bool _headless;
 		public bool Headless
 		{
 			get => _headless;
 			set
 			{
-				if ( value )
-					Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 12);
-				else
-					Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 27 );
+				Style.Height = value ? Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 12) : Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 27 );
 
 				SetClass( "isHeadless", value );
 				_headless = value;
@@ -45,13 +42,18 @@ namespace Waste.UI
 		public static ContainerWindow GetWindowRepresentation(Container container, bool isHeadless = false)
         {
 			if ( Host.IsServer ) return null; // Server isn't supposed to be messing with this stuff.
-            ContainerWindow window = new(container);
-			window.Size = container.Size;
-            window.Style.Width = Length.Pixels(SlotWindow.SLOT_SIZE * container.Size.x + 12);
-            window.Style.Height = Length.Pixels(SlotWindow.SLOT_SIZE * container.Size.y + 12);
-			window.Headless = isHeadless;
+			ContainerWindow window = new(container)
+			{
+				Size = container.Size,
+				Style =
+				{
+					Width = Length.Pixels( SlotWindow.SLOT_SIZE * container.Size.x + 12 ),
+					Height = Length.Pixels( SlotWindow.SLOT_SIZE * container.Size.y + 12 )
+				},
+				Headless = isHeadless
+			};
 
-            foreach (Slot slot in container.Slots)
+			foreach (var slot in container.Slots)
 			{
 				slot.Window.Parent = window;
 			}

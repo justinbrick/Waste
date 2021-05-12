@@ -18,6 +18,22 @@ namespace Waste
 			Inventory = new WasteInventory( this );
 		}
 
+		// We don't want to be doing anything on touch. (YET)
+		public override void Touch( Entity other )
+		{
+			
+		}
+		
+		public override void StartTouch( Entity other )
+		{
+			
+		}
+
+		public override void EndTouch( Entity other )
+		{
+			
+		}
+
 		public override void Respawn()
 		{
 			SetModel("models/citizen/citizen.vmdl");
@@ -43,7 +59,7 @@ namespace Waste
 
 			if (trace.Hit)
 			{
-				if ( !(trace.Entity is WasteItem item) ) // If this is not an item we can interact with, ignore it.
+				if ( trace.Entity is not WasteItem item ) // If this is not an item we can interact with, ignore it.
 				{
 					IsLookingAtItem = false;
 					LastItem = null;

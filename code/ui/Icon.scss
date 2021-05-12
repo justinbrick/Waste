@@ -1,6 +1,8 @@
 ﻿Icon {
     background-color: rgba(black,0.1);
-
+    pointer-events: all;
+    z-index: 99; // Let's try to ensure this to be on top.
+    
     image {
         position: absolute;
         left: 0;

@@ -4,7 +4,7 @@ using Sandbox.UI.Construct;
 
 namespace Waste.UI
 {
-    class WasteHud : Hud
+    public class WasteHud : Hud
     {
         public WasteHud()
         {

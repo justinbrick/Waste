@@ -4,23 +4,23 @@ using Sandbox.UI.Construct;
 
 namespace Waste.UI
 {
-    class InteractionPrompt : Panel
+    public class InteractionPrompt : Panel
     {
         public static bool IsOpen { get; private set; }
-        private static Panel Current;
+        private static Panel _current;
         private Label text;
         public string Text
         {
-            set
-            {
-                text.Text = value;
-                Current?.Style.Dirty();
-            }
+	        set
+	        {
+		        text.Text = value;
+		        _current?.Style.Dirty();
+	        }
         }
 
         public InteractionPrompt()
         {
-            Current = this;
+            _current = this;
             IsOpen = false;
             StyleSheet.Load("/ui/InteractionPrompt.scss");
             Add.Panel("interact_key").Add.Label("F");
@@ -31,14 +31,14 @@ namespace Waste.UI
         {
             if (WasteMenu.IsOpen || Host.IsServer) return; // If this is open, ignore all prompts to show this. 
             IsOpen = true;
-            Current?.SetClass("visible", IsOpen);
+            _current?.SetClass("visible", IsOpen);
         }
 
 		public static void Close()
         {
 			if ( Host.IsServer ) return;
             IsOpen = false;
-            Current?.SetClass("visible", IsOpen);
+            _current?.SetClass("visible", IsOpen);
         }
     }
 }

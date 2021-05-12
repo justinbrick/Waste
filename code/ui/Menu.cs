@@ -6,18 +6,18 @@ namespace Waste.UI
 {
     class WasteMenu : Panel
     {
-        private static WasteMenu Current;
+        private static WasteMenu _current;
         public static bool IsOpen { get; private set; }
-        private Panel Inventory;
-		private Panel BackpackSlot;
-		private Panel CaseSlot;
+        public static Panel Inventory { get; private set; }
+		private Panel BackpackSlot { get; set; }
+		private Panel CaseSlot { get; set; }
 
         public WasteMenu()
         {
 			var player = Player.Local;
 			var inventory = player.Inventory as WasteInventory;
 
-			Current = this;
+			_current = this;
             IsOpen = false;
             AddChild<PlayerScreen>();
             Inventory = Add.Panel("inventory");
@@ -89,13 +89,13 @@ namespace Waste.UI
 			{
 				var backpackWindow = inventory.Backpack.Window;
 				backpackWindow.Style.Top = Length.Pixels( 165 + vestSize );
-				Current.BackpackSlot.Style.Top = Length.Pixels( 170 + vestSize );
+				_current.BackpackSlot.Style.Top = Length.Pixels( 170 + vestSize );
 			}
 			if (inventory?.Case != null)
 			{
 				var caseWindow = inventory.Case.Window;
 				caseWindow.Style.Top = Length.Pixels( 195 + vestSize + backpackSize );
-				Current.CaseSlot.Style.Top = Length.Pixels( 200 + vestSize + backpackSize );
+				_current.CaseSlot.Style.Top = Length.Pixels( 200 + vestSize + backpackSize );
 			}
 		}
 
@@ -130,9 +130,9 @@ namespace Waste.UI
         public static void Open()
         {
             IsOpen = true;
-            Current?.SetClass("isOpen", IsOpen);
-			Current.AcceptsFocus = true;
-			Current.Focus();
+            _current?.SetClass("isOpen", IsOpen);
+			_current.AcceptsFocus = true;
+			_current.Focus();
 			if (InteractionPrompt.IsOpen)
 				InteractionPrompt.Close();
             DoBlur();
@@ -141,9 +141,9 @@ namespace Waste.UI
         public static void Close()
         {
 			IsOpen = false;
-            Current?.SetClass("isOpen", IsOpen);
-			Current.AcceptsFocus = false;
-			Current.Focus();
+            _current?.SetClass("isOpen", IsOpen);
+			_current.AcceptsFocus = false;
+			_current.Focus();
             DoBlur();
 			var player = Player.Local as WastePlayer;
 			if ( player.IsLookingAtItem ) // Are we still looking at an item?

@@ -1,4 +1,5 @@
-﻿using Sandbox.UI;
+﻿using System.Reflection.Metadata;
+using Sandbox.UI;
 using Sandbox.UI.Construct;
 
 namespace Waste.UI
@@ -6,7 +7,7 @@ namespace Waste.UI
     // Each slot in a container
     public class SlotWindow : Panel
     {
-		public static readonly int SLOT_SIZE = 80; // The size of each slot in pixels.
+		public const int SLOT_SIZE = 80; // The size of each slot in pixels.
 		public bool? Valid; // Is there a valid item hovering over this?
         public Container SlotParent;
 
