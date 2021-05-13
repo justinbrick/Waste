@@ -7,10 +7,12 @@ namespace Waste.UI
     class WasteMenu : Panel
     {
         private static WasteMenu _current;
+        private Panel BackpackSlot { get; set; }
+        private Panel CaseSlot { get; set; }
         public static bool IsOpen { get; private set; }
         public static Panel Inventory { get; private set; }
-		private Panel BackpackSlot { get; set; }
-		private Panel CaseSlot { get; set; }
+        public static Icon CurrentIcon;
+        
 
         public WasteMenu()
         {

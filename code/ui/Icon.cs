@@ -49,8 +49,7 @@ namespace Waste.UI
 					break;
 			}
 		}
-
-		// TODO: We need to be able to see slots under this mouse so we can see if we can place down or not.
+		
 		private void OnMouseDown()
 		{
 			_beingDragged = true;
@@ -58,6 +57,7 @@ namespace Waste.UI
 			_lastTop = Style.Top;
 			Style.PointerEvents = "none"; // Let pointer events pass through now.
 			Parent = WasteHud.CurrentPanel;
+			WasteMenu.CurrentIcon = this;
 		}
 
 		private void OnMouseUp()
@@ -67,6 +67,7 @@ namespace Waste.UI
 			Style.Top = _lastTop;
 			Style.PointerEvents = "all";
 			Parent = Container;
+			WasteMenu.CurrentIcon = null;
 		}
 
 		// Generates an icon normally, and then parents it to a container.

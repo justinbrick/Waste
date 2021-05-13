@@ -14,44 +14,38 @@ namespace Waste
 
 		public Container()
 		{
-			Items = new();
+			Items = new List<WasteItem>();
 		}
 
         public Container(int sizeX, int sizeY, bool isHeadless = false)  
         {
-			Size = new( sizeX, sizeY );
-			Items = new();
+			Size = new Vector2( sizeX, sizeY );
+			Items = new List<WasteItem>();
 			Slots = new Slot[sizeX, sizeY];
 
-			// For some reason Slots.Initialize() doesn't work?
 			for (int x = 0; x < sizeX; ++x )
-				for (int y = 0; y < sizeY; ++y )
-					Slots[x, y] = new Slot();
+				for ( int y = 0; y < sizeY; ++y )
+					Slots[x, y] = new Slot()
+					{
+						Container = this,
+						Position = new Vector2(x,y)
+					};
 
 			Window = ContainerWindow.GetWindowRepresentation( this, isHeadless );
 		}
 
 		// Trying to add something in a certain position.
+		// TODO: Add functionalities
 		public bool AddItem(WasteItem item, Vector2 position)
 		{
-			if ( !CanAddItem( item, position ) ) return false;
-
-			for (int x = 0; x < item.Size.x; ++x )
-			{
-				for (int y = 0; y < item.Size.y; ++y )
-				{
-
-				}
-			}
-
-			return true;
+			return CanAddItem( item, position );
 		}
 
 		public bool AddItem(WasteItem item)
 		{
 			if (CanAddItem(item))
 			{
-
+				
 			}
 			return false;
 		}
