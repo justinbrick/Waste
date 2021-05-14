@@ -19,7 +19,7 @@ namespace Waste.Storage
 			Case = new Container(2, 2, 2, 2, true);
         }
 
-        public virtual bool HasSpace(Entity ent)
+        public bool HasSpace(Entity ent)
         {
             if (ent is WasteItem item) // Is this an item we can pick up?
             {
@@ -35,7 +35,6 @@ namespace Waste.Storage
 			return base.Add( ent, makeActive );
         }
 
-        // When the hell did this get here?
         public bool IsCarryingType(Type t)
         {
             return List.Any(x => x.GetType() == t);

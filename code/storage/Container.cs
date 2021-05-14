@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using Waste.UI;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Waste.Storage
 {
@@ -36,53 +37,33 @@ namespace Waste.Storage
 			Window = ContainerWindow.GetWindowRepresentation( this, isHeadless );
 		}
 
-		// Trying to add something in a certain position.
-		// TODO: Add functionalities
+		
+        // We want to try and add something to this container in a certain spot.
 		public bool AddItem(WasteItem item, Vector2 position)
 		{
-			return CanAddItem( item, position );
-		}
-
-		public bool AddItem(WasteItem item)
-		{
-			if (CanAddItem(item))
-			{
-				
-			}
-			return false;
-		}
-
-		// TODO: This is questionable, have someone review this
-		public bool CanAddItem(WasteItem item, Vector2 position)
-		{
-			if ( position.x > ContainerSize.x || position.y > ContainerSize.y ) return false; // Can this item even fit in this container?
-			if ( position.x + item.Size.x > ContainerSize.x || position.y + item.Size.y > ContainerSize.y ) return false; // Will it fit adjusting for the item?
-			for (int itemX = 0; itemX < item.Size.x; ++itemX ) // For the entire size of the item, check if each slot has an item or not.
-			{
-				for ( int itemY = 0; itemY < item.Size.y; ++itemY)
-				{
-					if ( Slots[(int)position.x-1 + itemX,(int) position.y-1 + itemY].HasItem ) return false;
-				}
-			}
+			if ( !CanAddItem( item, position ) ) return false;
+			// TODO: Implement
 			return true;
 		}
 
-		public bool CanAddItem(WasteItem item )
-        {
-			Vector2 pos = new();
-			for (int slotX = 0; slotX < ContainerSize.x; ++slotX )
-			{
-				for (int slotY = 0; slotY < ContainerSize.y; ++slotY )
-				{
-					if (!Slots[slotX, slotY].HasItem) // Look at which slots don't have items, that means this has a potential to fit something.
-					{
-						pos.x = slotX; 
-						pos.y = slotY;
-						if ( CanAddItem( item, pos ) ) return true;
-					}
-				}
-			}
-            return false;
-        }
+		// We want to try and add an item anywhere into this container.
+		public bool AddItem(WasteItem item)
+		{
+			if ( !CanAddItem( item ) ) return false;
+			// TODO: Implement
+			return true;
+		}
+		
+		
+		public bool CanAddItem(WasteItem item, Vector2 position)
+		{
+			if ( position.x > ContainerSize.x || position.y > ContainerSize.y ||
+			     position.x + item.Size.x > ContainerSize.x ||
+			     position.y + item.Size.y > ContainerSize.y ) return false;
+
+			return Slots[(int)position.x, (int)position.y].CanFit( item );
+		}
+
+		public bool CanAddItem(WasteItem item ) => Slots.Cast<Slot>().Any( slot => !slot.HasItem && slot.CanFit( item ) );
     }
 }

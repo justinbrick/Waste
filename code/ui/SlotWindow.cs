@@ -63,7 +63,7 @@ namespace Waste.UI
 	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
 	        var item = WasteMenu.CurrentIcon.Item;
 	        var slots = Slot.Container.Slots;
-	        var itemSize = WasteMenu.CurrentIcon.Item.Size;
+	        var itemSize = item.Size;
 	       
 	        if ( !Slot.CanFit( item ) ) return; 
 		    for ( int x = 0; x < itemSize.x; ++x )

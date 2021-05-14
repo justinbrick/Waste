@@ -137,13 +137,12 @@ Sandbox.System/Vector2
 Sandbox.System/Vector2..ctor( System.Single, System.Single )
 Sandbox.System/Vector2.get_x()
 Sandbox.System/Vector2.get_y()
-Sandbox.System/Vector2.set_x( System.Single )
-Sandbox.System/Vector2.set_y( System.Single )
 Sandbox.System/Vector3
 Sandbox.System/Vector3..ctor( System.Single, System.Single, System.Single )
 Sandbox.System/Vector3.op_Addition( Vector3, Vector3 )
 Sandbox.System/Vector3.op_Multiply( Vector3, System.Single )
 System.Linq/System.Linq.Enumerable.Any<TSource>( System.Collections.Generic.IEnumerable`1<TSource>, System.Func`2<TSource,System.Boolean> )
+System.Linq/System.Linq.Enumerable.Cast<TResult>( System.Collections.IEnumerable )
 System.Private.CoreLib/System.Array.GetLength( System.Int32 )
 System.Private.CoreLib/System.Boolean
 System.Private.CoreLib/System.Collections.Generic.IEnumerable`1
@@ -155,6 +154,7 @@ System.Private.CoreLib/System.Collections.Generic.List`1.GetEnumerator()
 System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator
 System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator.get_Current()
 System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator.MoveNext()
+System.Private.CoreLib/System.Collections.IEnumerable
 System.Private.CoreLib/System.Diagnostics.DebuggerBrowsableAttribute
 System.Private.CoreLib/System.Double
 System.Private.CoreLib/System.Exception..ctor( System.String )
