@@ -34,8 +34,8 @@ namespace Waste.Storage
 						Position = new Vector2(x,y)
 					};
 
-			Window = ContainerWindow.GetWindowRepresentation( this, isHeadless );
-		}
+			Window = Host.IsClient ? new ContainerWindow( this, isHeadless ) : null;
+        }
 
 		
         // We want to try and add something to this container in a certain spot.
@@ -53,8 +53,7 @@ namespace Waste.Storage
 			// TODO: Implement
 			return true;
 		}
-		
-		
+
 		public bool CanAddItem(WasteItem item, Vector2 position)
 		{
 			if ( position.x > ContainerSize.x || position.y > ContainerSize.y ||
