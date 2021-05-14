@@ -29,9 +29,6 @@ namespace Waste.UI
 		        case "onmouseover":
 			        OnMouseOver();
 			        break;
-		        case "onmouseout":
-			        OnMouseOut();
-			        break;
 	        }
         }
 
@@ -48,31 +45,39 @@ namespace Waste.UI
         
         public void OnMouseOver()
         {
-	        // Sometimes we'll hover over the slots representing items themselves. They don't have slots associated. Either this, or there is no icon currently being hovered.
-	        ColorSlots( true );
+	        ColorSlots();
         }
-
-        public void OnMouseOut()
-        {
-	        ColorSlots( null );
-        }
-
-        private void ColorSlots(bool? valid)
+        
+        private void ColorSlots()
         {
 	        ClearColors(); // Clear all the colors before we do any more stuff. 
 	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
 	        var item = WasteMenu.CurrentIcon.Item;
 	        var slots = Slot.Container.Slots;
 	        var itemSize = item.Size;
-	       
-	        if ( !Slot.CanFit( item ) ) return; 
-		    for ( int x = 0; x < itemSize.x; ++x )
+
+	        if ( Slot.CanFit( item ) )
 	        {
-		        for ( int y = 0; y < itemSize.y; ++y )
+		        for ( int x = 0; x < itemSize.x; ++x )
 		        {
-			        var slot = slots[(int)Slot.Position.x + x,(int)Slot.Position.y + y].Window; 
-			        slot.Valid = valid;
-			        _activeSlots.Add( slot ); // Add this to the active list.
+			        for ( int y = 0; y < itemSize.y; ++y )
+			        {
+				        var slot = slots[(int)Slot.Position.x + x, (int)Slot.Position.y + y].Window;
+				        slot.Valid = true;
+				        _activeSlots.Add( slot ); // Add this to the active list.
+			        }
+		        }
+	        }
+	        else
+	        {
+		        for ( int x = (int)Slot.Position.x, realX = 0; x < Slot.Container.ContainerSize.x && realX < itemSize.x; ++x, ++realX)
+		        {
+			        for ( int y = (int)Slot.Position.y, realY = 0; y < Slot.Container.ContainerSize.y && realY < itemSize.y; ++y, ++realY)
+			        {
+				        var slot = slots[x, y].Window;
+				        slot.Valid = false;
+				        _activeSlots.Add( slot );
+			        }
 		        }
 	        }
         }

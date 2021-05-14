@@ -178,7 +178,6 @@ System.Private.CoreLib/System.Runtime.CompilerServices.CompilerGeneratedAttribut
 System.Private.CoreLib/System.Single
 System.Private.CoreLib/System.String
 System.Private.CoreLib/System.String.Concat( System.String, System.String )
-System.Private.CoreLib/System.String.Format( System.String, System.Object[] )
 System.Private.CoreLib/System.String.op_Equality( System.String, System.String )
 System.Private.CoreLib/System.String.op_Inequality( System.String, System.String )
 System.Private.CoreLib/System.Type
