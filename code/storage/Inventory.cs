@@ -2,7 +2,7 @@
 using System;
 using System.Linq;
 
-namespace Waste
+namespace Waste.Storage
 {
     class WasteInventory : BaseInventory
     {
@@ -13,10 +13,10 @@ namespace Waste
 
         public WasteInventory(Player player) : base(player)
         {
-            Pockets = new Container(4, 1, true);
-			Vest = new Container(6, 6, true);
-			Backpack = new Container( 4, 8, true);
-			Case = new Container(2, 2, true);
+            Pockets = new Container(4, 1, 4, 1, true);
+			Vest = new Container(6, 6, 6, 6, true);
+			Backpack = new Container( 4, 8, 4, 8, true);
+			Case = new Container(2, 2, 2, 2, true);
         }
 
         public virtual bool HasSpace(Entity ent)

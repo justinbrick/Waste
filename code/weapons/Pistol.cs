@@ -1,5 +1,5 @@
 ﻿using Sandbox;
-
+using Waste.Storage;
 namespace Waste
 {
     public class Pistol : WasteWeapon

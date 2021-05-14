@@ -1,9 +1,8 @@
 ﻿using Sandbox;
-using Sandbox.UI;
 using System;
 using Waste.UI;
 
-namespace Waste
+namespace Waste.Storage
 {
 	public class WasteItem : BaseCarriable
 	{

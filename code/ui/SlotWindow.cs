@@ -1,10 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Runtime.CompilerServices;
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using Waste.Storage;
 
 namespace Waste.UI
 {
@@ -63,12 +61,11 @@ namespace Waste.UI
         {
 	        ClearColors(); // Clear all the colors before we do any more stuff. 
 	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
+	        var item = WasteMenu.CurrentIcon.Item;
 	        var slots = Slot.Container.Slots;
 	        var itemSize = WasteMenu.CurrentIcon.Item.Size;
-	        var containerWidth = slots.GetLength( 0 );
-	        var containerHeight = slots.GetLength( 1 );
-	        Log.Info($"{Slot.Position.x} + {itemSize.x} > {containerWidth} or {Slot.Position.y} + {itemSize.y} > {containerHeight}");
-	        if ( Slot.Position.x + itemSize.x > containerWidth || Slot.Position.x + itemSize.y > containerHeight ) return; // I want to kill myself.
+	       
+	        if ( !Slot.CanFit( item ) ) return; 
 		    for ( int x = 0; x < itemSize.x; ++x )
 	        {
 		        for ( int y = 0; y < itemSize.y; ++y )

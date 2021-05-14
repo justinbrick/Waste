@@ -2,12 +2,12 @@
 using Waste.UI;
 using System.Collections.Generic;
 
-namespace Waste
+namespace Waste.Storage
 {
 
     public class Container : WasteItem
     {
-		public Vector2 ContainerSize { get; protected set; } // Most cases this will be the same size as the container, but for others we want it to be different.
+	    public virtual Vector2 ContainerSize { get; protected set; } // Most cases this will be the same size as the container, but for others we want it to be different.
         public List<WasteItem> Items { get; protected set; } // List of all the items currently in the container.
         public ContainerWindow Window { get; protected set; } // Window representation of this container.
 		public Slot[,] Slots { get; set; }
@@ -17,14 +17,16 @@ namespace Waste
 			Items = new List<WasteItem>();
 		}
 
-        public Container(int sizeX, int sizeY, bool isHeadless = false)  
+		// TODO: This is temporary, we will be setting size & container size by overriding variables.
+        public Container(int sizeX, int sizeY, int containerSizeX, int containerSizeY, bool isHeadless = false)  
         {
 			Size = new Vector2( sizeX, sizeY );
+			ContainerSize = new Vector2( containerSizeX, containerSizeY );
 			Items = new List<WasteItem>();
-			Slots = new Slot[sizeX, sizeY];
+			Slots = new Slot[containerSizeX, containerSizeY];
 
-			for (int x = 0; x < sizeX; ++x )
-				for ( int y = 0; y < sizeY; ++y )
+			for (int x = 0; x < containerSizeX; ++x )
+				for ( int y = 0; y < containerSizeY; ++y )
 					Slots[x, y] = new Slot()
 					{
 						Container = this,

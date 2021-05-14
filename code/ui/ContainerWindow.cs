@@ -2,6 +2,7 @@
 using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
+using Waste.Storage;
 
 namespace Waste.UI
 {

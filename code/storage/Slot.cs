@@ -1,7 +1,7 @@
 ﻿using Sandbox;
 using Waste.UI;
 
-namespace Waste
+namespace Waste.Storage
 {
 	public class Slot
 	{
@@ -22,7 +22,7 @@ namespace Waste
 				_window = value; 
 			}
 		}
-
+		
 		public Slot()
 		{
 			HasItem = false;
@@ -31,5 +31,14 @@ namespace Waste
 				Window = new SlotWindow() {Slot = this};
 			}
 		}
+
+		// Checks if this item can fit in this specified slot, true if yes, false if not.
+		public bool CanFit( WasteItem item )
+		{
+			Log.Info( $"{Position.x} + {item.Size.x} <= {Container.ContainerSize.x} && {Position.y} + {item.Size.y} <= {Container.ContainerSize.y}" );
+			return Position.x + item.Size.x <= Container.ContainerSize.x &&
+			       Position.y + item.Size.y <= Container.ContainerSize.y;
+		}
+			
 	}
 }

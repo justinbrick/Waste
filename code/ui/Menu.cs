@@ -1,5 +1,6 @@
 ﻿using Sandbox;
 using Sandbox.UI;
+using Waste.Storage;
 using Sandbox.UI.Construct;
 
 namespace Waste.UI
