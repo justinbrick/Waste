@@ -29,11 +29,13 @@ namespace Waste.UI
 			StyleSheet.Load( "/ui/ContainerWindow.scss" );
 			throw new System.Exception("Container Window Constructed without container reference!");
         }
+        
         public ContainerWindow( Container container, bool isHeadless = false )
         {
 	        Host.AssertClient();
 			StyleSheet.Load("/ui/ContainerWindow.scss");
 			var titleBar = Add.Panel( "title_bar" ); // TODO: Use title bar
+			titleBar.Add.Panel("exit_button");
 			Size = container.Size;
 			Style.Width = Length.Pixels( SlotWindow.SLOT_SIZE * container.Size.x + 12 );
 			Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * container.Size.y + 12 );

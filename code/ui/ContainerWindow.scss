@@ -3,7 +3,7 @@
 ContainerWindow {
     display: flex;
     flex-wrap: wrap;
-    width: 100%; // cum
+    width: 100%;
     height: 100%;
     background-color: rgba(black, 0.1);
     border: 1px rgba(black, 0.5);
@@ -28,15 +28,32 @@ ContainerWindow {
         width: 100%;
         height: 15px;
         background-color: rgba(black, 0.5);
+
+        // We can click this button in order to close the window, but this is only if it's not headless.
+        .exit_button {
+            position: absolute;
+            height: 15px;
+            width: 20px;
+            right: 0;
+            top: 0;
+            background-color: rgba(red, 0.5);
+            pointer-events: all;
+        }
     }
 
+    // What we want our container to do when it's actually headless.
     &.isHeadless {
         .slot {
-            top: 0px;
+            top: 0;
         }
 
         .title_bar {
             opacity: 0;
+            .exit_button {
+                pointer-events: none;
+            }
         }
+        
+        
     }
 }
