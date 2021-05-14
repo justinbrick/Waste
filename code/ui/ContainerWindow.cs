@@ -1,4 +1,5 @@
-﻿using Sandbox;
+﻿using System.Runtime.CompilerServices;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -27,7 +28,7 @@ namespace Waste.UI
 			StyleSheet.Load( "/ui/ContainerWindow.scss" );
 			throw new System.Exception("Container Window Constructed without container reference!");
         }
-
+	
 		public ContainerWindow(Container container)
 		{ 
 			StyleSheet.Load( "/ui/ContainerWindow.scss" );
@@ -53,9 +54,14 @@ namespace Waste.UI
 				Headless = isHeadless
 			};
 
-			foreach (var slot in container.Slots)
+			var containerWidth = container.Slots.GetLength( 0 );
+			var containerHeight = container.Slots.GetLength( 1 );
+			for ( int y = 0; y < containerHeight; ++y )
 			{
-				slot.Window.Parent = window;
+				for ( int x = 0; x < containerWidth; ++x )
+				{
+					container.Slots[x, y].Window.Parent = window;
+				}
 			}
 
 			// TODO: Query items from database and place them into backpack.

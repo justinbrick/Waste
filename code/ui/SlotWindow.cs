@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
+using Sandbox;
 using Sandbox.UI;
 using Sandbox.UI.Construct;
 
@@ -8,6 +11,7 @@ namespace Waste.UI
     // Each slot in a container
     public class SlotWindow : Panel
     {
+	    private static List<SlotWindow> _activeSlots = new List<SlotWindow>();
 		public const int SLOT_SIZE = 80; // The size of each slot in pixels.
 		public bool? Valid; // Is there a valid item hovering over this?
         public Slot Slot; // The slot for this container.
@@ -27,19 +31,55 @@ namespace Waste.UI
 		        case "onmouseover":
 			        OnMouseOver();
 			        break;
+		        case "onmouseout":
+			        OnMouseOut();
+			        break;
 	        }
         }
 
+        // Clear the colors of all slots. This is so we can change this externally.
+        public static void ClearColors()
+        {
+	        foreach ( var slot in _activeSlots )
+	        {
+		        if ( slot == null ) continue;
+		        slot.Valid = null;
+	        }
+	        _activeSlots.Clear(); // Now we clear the list.
+        }
+        
         public void OnMouseOver()
         {
 	        // Sometimes we'll hover over the slots representing items themselves. They don't have slots associated. Either this, or there is no icon currently being hovered.
-	        if ( Slot == null || WasteMenu.CurrentIcon == null ) return;
-	        var slots = Slot.Container.Slots;
-	        var containerHeight = slots.GetLength( 0 );
-	        var containerWidth = slots.GetLength( 1 );
-	       
+	        ColorSlots( true );
         }
 
+        public void OnMouseOut()
+        {
+	        ColorSlots( null );
+        }
+
+        private void ColorSlots(bool? valid)
+        {
+	        ClearColors(); // Clear all the colors before we do any more stuff. 
+	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
+	        var slots = Slot.Container.Slots;
+	        var itemSize = WasteMenu.CurrentIcon.Item.Size;
+	        var containerWidth = slots.GetLength( 0 );
+	        var containerHeight = slots.GetLength( 1 );
+	        Log.Info($"{Slot.Position.x} + {itemSize.x} > {containerWidth} or {Slot.Position.y} + {itemSize.y} > {containerHeight}");
+	        if ( Slot.Position.x + itemSize.x > containerWidth || Slot.Position.x + itemSize.y > containerHeight ) return; // I want to kill myself.
+		    for ( int x = 0; x < itemSize.x; ++x )
+	        {
+		        for ( int y = 0; y < itemSize.y; ++y )
+		        {
+			        var slot = slots[(int)Slot.Position.x + x,(int)Slot.Position.y + y].Window; 
+			        slot.Valid = valid;
+			        _activeSlots.Add( slot ); // Add this to the active list.
+		        }
+	        }
+        }
+        
         public override void Tick()
 		{
 			base.Tick();

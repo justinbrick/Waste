@@ -145,13 +145,12 @@ Sandbox.System/Vector3.op_Addition( Vector3, Vector3 )
 Sandbox.System/Vector3.op_Multiply( Vector3, System.Single )
 System.Linq/System.Linq.Enumerable.Any<TSource>( System.Collections.Generic.IEnumerable`1<TSource>, System.Func`2<TSource,System.Boolean> )
 System.Private.CoreLib/System.Array.GetLength( System.Int32 )
-System.Private.CoreLib/System.Array.GetLowerBound( System.Int32 )
-System.Private.CoreLib/System.Array.GetUpperBound( System.Int32 )
 System.Private.CoreLib/System.Boolean
 System.Private.CoreLib/System.Collections.Generic.IEnumerable`1
 System.Private.CoreLib/System.Collections.Generic.List`1
 System.Private.CoreLib/System.Collections.Generic.List`1..ctor()
 System.Private.CoreLib/System.Collections.Generic.List`1.Add( T )
+System.Private.CoreLib/System.Collections.Generic.List`1.Clear()
 System.Private.CoreLib/System.Collections.Generic.List`1.GetEnumerator()
 System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator
 System.Private.CoreLib/System.Collections.Generic.List`1/Enumerator.get_Current()
@@ -180,6 +179,7 @@ System.Private.CoreLib/System.Runtime.CompilerServices.CompilerGeneratedAttribut
 System.Private.CoreLib/System.Single
 System.Private.CoreLib/System.String
 System.Private.CoreLib/System.String.Concat( System.String, System.String )
+System.Private.CoreLib/System.String.Format( System.String, System.Object[] )
 System.Private.CoreLib/System.String.op_Equality( System.String, System.String )
 System.Private.CoreLib/System.String.op_Inequality( System.String, System.String )
 System.Private.CoreLib/System.Type

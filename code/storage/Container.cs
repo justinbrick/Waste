@@ -74,13 +74,9 @@ namespace Waste
 				{
 					if (!Slots[slotX, slotY].HasItem) // Look at which slots don't have items, that means this has a potential to fit something.
 					{
-						pos.x = slotX;
+						pos.x = slotX; 
 						pos.y = slotY;
-						bool canAdd = CanAddItem(item, pos);
-						if ( canAdd )
-							return canAdd;
-						else
-							continue;
+						if ( CanAddItem( item, pos ) ) return true;
 					}
 				}
 			}

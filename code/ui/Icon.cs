@@ -67,6 +67,7 @@ namespace Waste.UI
 			Style.Top = _lastTop;
 			Style.PointerEvents = "all";
 			Parent = Container;
+			SlotWindow.ClearColors(); // Clear all the colors. This is because they'll remain if we don't do this.
 			WasteMenu.CurrentIcon = null;
 		}
 
@@ -83,7 +84,6 @@ namespace Waste.UI
 		public static Icon GenerateIcon(WasteItem item)
 		{
 			Host.AssertClient();
-
 			var icon = new Icon();
 			// Do we already have this icon? Here you go.
 			foreach ( var iconName in _icons)
