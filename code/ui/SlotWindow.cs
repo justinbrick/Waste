@@ -27,11 +27,14 @@ namespace Waste.UI
 	        switch ( eventName )
 	        {
 		        case "onmouseover":
-			        OnMouseOver();
+			        ColorSlots();
+			        break;
+		        case "onmouseout": // We don't want these colors staying in this case.
+			        ClearColors();
 			        break;
 	        }
         }
-
+        
         // Clear the colors of all slots. This is so we can change this externally.
         public static void ClearColors()
         {
@@ -42,15 +45,9 @@ namespace Waste.UI
 	        }
 	        _activeSlots.Clear(); // Now we clear the list.
         }
-        
-        public void OnMouseOver()
-        {
-	        ColorSlots();
-        }
-        
+
         private void ColorSlots()
         {
-	        ClearColors(); // Clear all the colors before we do any more stuff. 
 	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
 	        var item = WasteMenu.CurrentIcon.Item;
 	        var slots = Slot.Container.Slots;
