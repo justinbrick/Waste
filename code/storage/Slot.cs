@@ -35,7 +35,6 @@ namespace Waste.Storage
 		// Checks if this item can fit in this specified slot, true if yes, false if not.
 		public bool CanFit( WasteItem item )
 		{
-			Log.Info( $"{Position.x} + {item.Size.x} > {Container.ContainerSize.x} or {Position.y} + {item.Size.y} > {Container.ContainerSize.y}" );
 			// If this is too big then it won't fit in the first place.
 			if (Position.x + item.Size.x > Container.ContainerSize.x ||
 			       Position.y + item.Size.y > Container.ContainerSize.y) return false;
@@ -49,9 +48,8 @@ namespace Waste.Storage
 				}
 			}
 			
-			Log.Info("Slot Can Fit!");
 			return true;
 		}
-			
+		
 	}
 }

@@ -37,37 +37,24 @@ namespace Waste.Storage
         
         public bool HasItem( WasteItem item ) => Items.Any(i => i == item);
         
-        // We want to try and add something to this container in a certain spot.
-		public bool AddItem(WasteItem item, Vector2 position)
+		public bool AddItem( WasteItem item, Slot slot )
 		{
-			if ( !CanAddItem( item, position ) ) return false;
-			item.SlotPosition = position;
-			Window?.AddItem( item, position );
+			if ( !slot.CanFit( item ) ) return false;
+			item.SlotPosition = slot.Position;
+			for ( int x = 0; x < item.Size.x; ++x )
+			{
+				for ( int y = 0; y < item.Size.y; ++y )
+				{
+					Slots[(int)slot.Position.x + x,(int)slot.Position.y + y].HasItem = true;
+				}
+			}
+			Window?.AddItem( item, slot.Position );
 			return true;
 		}
 
 		// We want to try and add an item anywhere into this container.
-		public bool AddItem(WasteItem item)
-		{
-			Log.Info("Container Add Item");
-			if ( !CanAddItem( item ) ) return false;
-			foreach ( var slot in Slots )
-			{
-				if ( !slot.HasItem && slot.CanFit( item ) )
-					return AddItem( item, slot.Position );
-			}
-			return false;
-		}
-
-		public bool CanAddItem(WasteItem item, Vector2 position)
-		{
-			if ( position.x > ContainerSize.x || position.y > ContainerSize.y ||
-			     position.x + item.Size.x > ContainerSize.x ||
-			     position.y + item.Size.y > ContainerSize.y ) return false;
-
-			return Slots[(int)position.x, (int)position.y].CanFit( item );
-		}
-
-		public bool CanAddItem(WasteItem item ) => Slots.Cast<Slot>().Any( slot => !slot.HasItem && slot.CanFit( item ) );
+		public bool AddItem(WasteItem item) => (from Slot slot in Slots where !slot.HasItem && slot.CanFit( item ) select AddItem( item, slot )).FirstOrDefault();
+		
+		public bool CanAddItem(WasteItem item) => Slots.Cast<Slot>().Any( slot => !slot.HasItem && slot.CanFit( item ) );
     }
 }

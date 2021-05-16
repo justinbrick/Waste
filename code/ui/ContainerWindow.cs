@@ -54,13 +54,13 @@ namespace Waste.UI
 
         public void AddItem(WasteItem item, Vector2 position)
         {
-	        if (item.Icon == null && Host.IsClient) item.Icon = Icon.GenerateIcon(item);
+	        item.Icon ??= Icon.GenerateIcon(item);
 	        var icon = item.Icon;
 	        var slot = Container.Slots[(int)position.x, (int)position.y].Window;
 	        icon.Parent = this;
 	        icon.Container = this;
-	        icon.Style.Left = slot.Style.Left;
-	        icon.Style.Top = slot.Style.Top;
+	        icon.Style.Left = Length.Pixels( SlotWindow.SLOT_SIZE * position.x );
+	        icon.Style.Top = Length.Pixels( SlotWindow.SLOT_SIZE * position.y );
         }
         
 		public void Close()

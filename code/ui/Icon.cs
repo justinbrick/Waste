@@ -52,7 +52,7 @@ namespace Waste.UI
 		private void OnMouseDown()
 		{
 			_beingDragged = true;
-			_lastLeft = Style.Top;
+			_lastLeft = Style.Left;
 			_lastTop = Style.Top;
 			Style.PointerEvents = "none"; // Let pointer events pass through now.
 			Parent = WasteHud.CurrentPanel;
