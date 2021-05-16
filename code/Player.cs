@@ -93,7 +93,6 @@ namespace Waste
             }
 			if (Input.Pressed(InputButton.Flashlight))
 			{
-				if ( IsClient ) return;
 				if ( trace.Hit )
 				{
 					if (IsLookingAtItem)

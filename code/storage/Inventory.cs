@@ -1,6 +1,7 @@
 ﻿using Sandbox;
 using System;
 using System.Linq;
+using Waste.Storage.Containers;
 
 namespace Waste.Storage
 {
@@ -13,26 +14,34 @@ namespace Waste.Storage
 
         public WasteInventory(Player player) : base(player)
         {
-            Pockets = new Container(4, 1, 4, 1, true);
-			Vest = new Container(6, 6, 6, 6, true);
-			Backpack = new Container( 4, 8, 4, 8, true);
-			Case = new Container(2, 2, 2, 2, true);
+	        Pockets = new Pockets(true);
         }
-
-        public bool HasSpace(Entity ent)
-        {
-            if (ent is WasteItem item) // Is this an item we can pick up?
-            {
-                return Pockets.CanAddItem(item) || Backpack.CanAddItem(item) || Case.CanAddItem(item);
-            }
-            return false;
-        }
-
+        
         public override bool Add(Entity ent, bool makeActive = false)
         {
-			if ( ent == null ) return false; // Does this entity even exist?
-			if ( Owner.ActiveChild != null ) return false; // Does the owner already have an active item?
-			return base.Add( ent, makeActive );
+	        if ( ent.Owner != null || ent is not WasteItem item || !CanAdd( item) ) return false;
+	        Log.Info( "Attempted to Add Item" );
+	        return Pockets?.AddItem( item ) == true || Vest?.AddItem( item ) == true ||
+	               Backpack?.AddItem( item ) == true || Case?.AddItem( item ) == true;
+        }
+        
+        public override bool CanAdd( Entity ent )
+        {
+	        if ( ent is not WasteItem {Owner: null} item) return false; // We don't want to try and add it if it's not one of ours.
+	        return (Pockets?.CanAddItem( item ) == true || Backpack?.CanAddItem( item ) == true ||
+	                Case?.CanAddItem( item ) == true ||
+	                Vest?.CanAddItem( item ) == true);
+        }
+
+        public override bool SetActive( Entity ent )
+        {
+	        if ( ent is not WasteItem item ) return false; // Don't try to set stuff as our active child if it's not of our type.
+	        if ( Owner.ActiveChild != null && CanAdd( Owner.ActiveChild ) )
+	        {
+		        
+	        }
+
+	        return false;
         }
 
         public bool IsCarryingType(Type t)

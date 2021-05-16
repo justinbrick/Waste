@@ -8,9 +8,10 @@ namespace Waste.Storage
 	{
 		// ReSharper disable once InconsistentNaming
 		public string UID { get; protected set; } // Unique ID
-		public Vector2 Size { get; set; } // The size of the item
 		public Vector2 SlotPosition { get; set; } // Where this item is in a container. Null if not in container.
-		public Icon WeaponIcon { get; set; } // The icon of this weapon. Clientside only.
+		public Icon Icon { get; set; } // The icon of this weapon. Clientside only.
+		public virtual Vector2 Size => Vector2.Zero; // The size of the item
+
 		public virtual double Value => 0.0; // The value of the item
 		// ReSharper disable once InconsistentNaming
 		public virtual string ID => "UNINITIALIZED"; // Weapon ID

@@ -6,9 +6,10 @@ using System.Linq;
 namespace Waste.Storage
 {
 
-    public class Container : WasteItem
+	
+    public partial class Container : WasteItem
     {
-	    public virtual Vector2 ContainerSize { get; protected set; } // Most cases this will be the same size as the container, but for others we want it to be different.
+	    public virtual Vector2 ContainerSize => Vector2.Zero; // Most cases this will be the same size as the container, but for others we want it to be different.
         public List<WasteItem> Items { get; protected set; } // List of all the items currently in the container.
         public ContainerWindow Window { get; protected set; } // Window representation of this container.
 		public Slot[,] Slots { get; set; }
@@ -17,17 +18,14 @@ namespace Waste.Storage
 		{
 			Items = new List<WasteItem>();
 		}
-
-		// TODO: This is temporary, we will be setting size & container size by overriding variables.
-        public Container(int sizeX, int sizeY, int containerSizeX, int containerSizeY, bool isHeadless = false)  
+		
+        public Container(bool isHeadless = false)
         {
-			Size = new Vector2( sizeX, sizeY );
-			ContainerSize = new Vector2( containerSizeX, containerSizeY );
-			Items = new List<WasteItem>();
-			Slots = new Slot[containerSizeX, containerSizeY];
-
-			for (int x = 0; x < containerSizeX; ++x )
-				for ( int y = 0; y < containerSizeY; ++y )
+	        Items = new List<WasteItem>();
+			Slots = new Slot[(int)ContainerSize.x, (int)ContainerSize.y];
+		
+			for (int x = 0; x < ContainerSize.x; ++x )
+				for ( int y = 0; y < ContainerSize.y; ++y )
 					Slots[x, y] = new Slot()
 					{
 						Container = this,
@@ -36,22 +34,29 @@ namespace Waste.Storage
 
 			Window = Host.IsClient ? new ContainerWindow( this, isHeadless ) : null;
         }
-
-		
+        
+        public bool HasItem( WasteItem item ) => Items.Any(i => i == item);
+        
         // We want to try and add something to this container in a certain spot.
 		public bool AddItem(WasteItem item, Vector2 position)
 		{
 			if ( !CanAddItem( item, position ) ) return false;
-			// TODO: Implement
+			item.SlotPosition = position;
+			Window?.AddItem( item, position );
 			return true;
 		}
 
 		// We want to try and add an item anywhere into this container.
 		public bool AddItem(WasteItem item)
 		{
+			Log.Info("Container Add Item");
 			if ( !CanAddItem( item ) ) return false;
-			// TODO: Implement
-			return true;
+			foreach ( var slot in Slots )
+			{
+				if ( !slot.HasItem && slot.CanFit( item ) )
+					return AddItem( item, slot.Position );
+			}
+			return false;
 		}
 
 		public bool CanAddItem(WasteItem item, Vector2 position)

@@ -24,14 +24,13 @@ namespace Waste.UI
             IsOpen = false;
             AddChild<PlayerScreen>();
             Inventory = Add.Panel("inventory");
-			Inventory.AddChild<SlotWindow>("pocket");
-			Inventory.AddChild<SlotWindow>( "vest" );
-			var icon = Icon.GenerateIcon(new Pistol());
-			icon.Parent = Inventory;
-			icon.Style.Width = Length.Pixels( 160 );
-			icon.Style.Height = Length.Pixels( 80 );
+			var tPocketWindow = Inventory.AddChild<SlotWindow>("pocket");
+			var tVestWindow = Inventory.AddChild<SlotWindow>( "vest" );
+			tVestWindow.Style.Top = Length.Pixels( 120 );
 			BackpackSlot = Inventory.AddChild<SlotWindow>( "backpack" );
+			BackpackSlot.Style.Top = Length.Pixels( 210 );
 			CaseSlot = Inventory.AddChild<SlotWindow>( "case" );
+			CaseSlot.Style.Top = Length.Pixels( 300 );
 
 			// This is actually terrible but I don't know a better way to do this.
 			var pockets = inventory?.Pockets;

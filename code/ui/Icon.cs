@@ -22,8 +22,6 @@ namespace Waste.UI
 		public Icon()
 		{
 			StyleSheet.Load("ui/Icon.scss");
-			Container = WasteMenu.Inventory;
-			Parent = WasteMenu.Inventory;
 		}
 
 		public override void Tick()
@@ -40,7 +38,6 @@ namespace Waste.UI
 		
 		public override void OnEvent( string eventName )
 		{
-			Log.Info( "EVENT: " + eventName );
 			switch ( eventName )
 			{
 				case "onmousedown":

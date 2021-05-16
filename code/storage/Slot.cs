@@ -28,15 +28,29 @@ namespace Waste.Storage
 			HasItem = false;
 			if (Host.IsClient)
 			{
-				Window = new SlotWindow() {Slot = this};
+				Window = new SlotWindow {Slot = this};
 			}
 		}
 
 		// Checks if this item can fit in this specified slot, true if yes, false if not.
 		public bool CanFit( WasteItem item )
 		{
-			return Position.x + item.Size.x <= Container.ContainerSize.x &&
-			       Position.y + item.Size.y <= Container.ContainerSize.y;
+			Log.Info( $"{Position.x} + {item.Size.x} > {Container.ContainerSize.x} or {Position.y} + {item.Size.y} > {Container.ContainerSize.y}" );
+			// If this is too big then it won't fit in the first place.
+			if (Position.x + item.Size.x > Container.ContainerSize.x ||
+			       Position.y + item.Size.y > Container.ContainerSize.y) return false;
+			
+			// Check if any of the slots nearby have items inside of them.
+			for ( int x = 0; x < item.Size.x; ++x )
+			{
+				for ( int y = 0; y < item.Size.y; ++y )
+				{
+					if ( Container.Slots[(int)Position.x + x,(int)Position.y + y].HasItem ) return false;
+				}
+			}
+			
+			Log.Info("Slot Can Fit!");
+			return true;
 		}
 			
 	}
