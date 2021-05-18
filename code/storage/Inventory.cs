@@ -10,17 +10,17 @@ namespace Waste.Storage
 	    public WasteWeapon Primary; // The primary weapon that we have.
 	    public WasteWeapon Secondary; // A secondary weapon that we have.
 	    public WasteItem Tertiary; // A third item, which can be either melee, pistol, or miscellaneous.
-        public Container Pockets; // Our pockets, which we will always have on us.
+        public WasteContainer Pockets; // Our pockets, which we will always have on us.
         // These are optional containers - this means that they have potential to be null.
         // If they are not null, then they can be used to store stuff, or will have their own stuff inside of them.
-        public Container Vest;
-        public Container Backpack;
-        public Container Case;
+        public WasteContainer Vest;
+        public WasteContainer Backpack;
+        public WasteContainer Case;
 
         // Upon construction, the only thing that we can guarantee is that we will have pockets.
         public WasteInventory(Player player) : base(player)
         {
-	        Pockets = new Pockets(true);
+	        Pockets = new Pockets() {Owner = player}; 
         }
         
         // What do we want to do when we're trying to add something to the inventory?
@@ -52,7 +52,6 @@ namespace Waste.Storage
 	        return false;
         }
         
-        // TODO: We might not need this.
         public bool IsCarryingType(Type t)
         {
             return List.Any(x => x.GetType() == t);

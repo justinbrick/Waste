@@ -7,7 +7,7 @@ namespace Waste.Storage
 	{
 		private SlotWindow _window;
 		public bool HasItem;
-		public Container Container; // The container this belongs to.
+		public WasteContainer WasteContainer; // The container this belongs to.
 		public Vector2 Position; // Where this slot is in it's respective container.
 		public SlotWindow Window
 		{
@@ -36,20 +36,19 @@ namespace Waste.Storage
 		public bool CanFit( WasteItem item )
 		{
 			// If this is too big then it won't fit in the first place.
-			if (Position.x + item.Size.x > Container.ContainerSize.x ||
-			       Position.y + item.Size.y > Container.ContainerSize.y) return false;
+			if (Position.x + item.Size.x > WasteContainer.ContainerSize.x ||
+			       Position.y + item.Size.y > WasteContainer.ContainerSize.y) return false;
 			
 			// Check if any of the slots nearby have items inside of them.
 			for ( int x = 0; x < item.Size.x; ++x )
 			{
 				for ( int y = 0; y < item.Size.y; ++y )
 				{
-					if ( Container.Slots[(int)Position.x + x,(int)Position.y + y].HasItem ) return false;
+					if ( WasteContainer.Slots[(int)Position.x + x,(int)Position.y + y].HasItem ) return false;
 				}
 			}
 			
 			return true;
 		}
-		
 	}
 }

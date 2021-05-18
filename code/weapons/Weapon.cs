@@ -3,7 +3,7 @@ using Waste.Storage;
 
 namespace Waste
 {
-    public partial class WasteWeapon : WasteItem, IPlayerControllable
+    public partial class WasteWeapon : WasteItem
     {
 		public virtual AmmoType AmmoType => AmmoType.Pistol;
 		public virtual int ClipSize => 16;
@@ -67,7 +67,7 @@ namespace Waste
 			// TODO: Inventory Logic
 
 			IsReloading = true;
-			Owner.SetAnimParam( "b_reload", true );
+			SetAnimParam( "b_reload", true );
 			StartReloadEffects();
 		}
 
@@ -171,7 +171,7 @@ namespace Waste
 
 			Particles.Create( "particles/pistol_muzzleflash.vpcf", EffectEntity, "muzzle" );
 
-			if ( Owner == Player.Local )
+			if ( Owner == Local.Pawn )
 			{
 				new Sandbox.ScreenShake.Perlin();
 			}

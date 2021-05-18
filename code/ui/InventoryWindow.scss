@@ -1,0 +1,32 @@
+﻿InventoryWindow {
+  overflow: scroll;
+  position: absolute;
+  width: 60%;
+  height: 90%;
+  right: 2.5%;
+  top: 5%;
+  background-color: rgba(black, 0.8);
+
+  .pocket {
+    position: absolute;
+    left: 20px;
+    top: 30px;
+  }
+
+  .vest {
+    position: absolute;
+    left: 20px;
+    top: 140px;
+  }
+
+  .backpack {
+    position: absolute;
+    left: 20px;
+    top: 140px;
+  }
+  .case {
+    position: absolute;
+    left: 20px;
+    top: 500px;
+  }
+}

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Waste
 {
-    partial class WastePlayer : BasePlayer
+    partial class WastePlayer : Player
     {
 		public bool IsLookingAtItem { get; set; }
 		public WasteItem LastItem; // The last item that we saw before this.
@@ -48,9 +48,9 @@ namespace Waste
 			base.Respawn();
 		}
 
-        protected override void Tick()
+        public override void Simulate(Client cl)
         {
-            base.Tick();
+            base.Simulate(cl);
 			// We want to find if someone is looking at an item.
 			var trace = Trace.Ray( EyePos, EyePos + EyeRot.Forward * 100 )
 					.UseHitboxes()
@@ -85,20 +85,17 @@ namespace Waste
 			{
 				var pistol = new Pistol();
 				pistol.Spawn();
-				pistol.WorldPos = EyePos + new Vector3(0, 0, 30);
+				pistol.Position = EyePos + new Vector3(0, 0, 30);
 			}
 			if (Input.Pressed(InputButton.Score) && IsClient)
             {
 				WasteMenu.Toggle();
             }
-			if (Input.Pressed(InputButton.Flashlight))
+			if (Input.Pressed(InputButton.Flashlight) && IsServer && trace.Hit && IsLookingAtItem)
 			{
-				if ( trace.Hit )
+				using ( Prediction.Off() )
 				{
-					if (IsLookingAtItem)
-					{
-						Inventory.Add(LastItem, true);
-					}
+					Inventory.Add(LastItem, true);
 				}
 			}
         }

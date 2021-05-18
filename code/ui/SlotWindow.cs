@@ -48,9 +48,9 @@ namespace Waste.UI
 
         private void ColorSlots()
         {
-	        if ( Slot == null || WasteMenu.CurrentIcon == null) return;
-	        var item = WasteMenu.CurrentIcon.Item;
-	        var slots = Slot.Container.Slots;
+	        if ( Slot == null || InventoryWindow.CurrentIcon == null) return;
+	        var item = InventoryWindow.CurrentIcon.Item;
+	        var slots = Slot.WasteContainer.Slots;
 	        var itemSize = item.Size;
 
 	        if ( Slot.CanFit( item ) )
@@ -67,9 +67,9 @@ namespace Waste.UI
 	        }
 	        else
 	        {
-		        for ( int x = (int)Slot.Position.x, realX = 0; x < Slot.Container.ContainerSize.x && realX < itemSize.x; ++x, ++realX)
+		        for ( int x = (int)Slot.Position.x, realX = 0; x < Slot.WasteContainer.ContainerSize.x && realX < itemSize.x; ++x, ++realX)
 		        {
-			        for ( int y = (int)Slot.Position.y, realY = 0; y < Slot.Container.ContainerSize.y && realY < itemSize.y; ++y, ++realY)
+			        for ( int y = (int)Slot.Position.y, realY = 0; y < Slot.WasteContainer.ContainerSize.y && realY < itemSize.y; ++y, ++realY)
 			        {
 				        var slot = slots[x, y].Window;
 				        slot.Valid = false;

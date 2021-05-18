@@ -2,24 +2,20 @@
 using Waste.UI;
 using System.Collections.Generic;
 using System.Linq;
+using NetworkWrappers;
 
 namespace Waste.Storage
 {
 
 	
-    public partial class Container : WasteItem
+    public partial class WasteContainer : WasteItem
     {
 	    public virtual Vector2 ContainerSize => Vector2.Zero; // Most cases this will be the same size as the container, but for others we want it to be different.
-        public List<WasteItem> Items { get; protected set; } // List of all the items currently in the container.
-        public ContainerWindow Window { get; protected set; } // Window representation of this container.
-		public Slot[,] Slots { get; set; }
-
-		public Container()
-		{
-			Items = new List<WasteItem>();
-		}
+	    [NetLocal] public List<WasteItem> Items { get; set; }
+	    public Slot[,] Slots;
+		public ContainerWindow Window;
 		
-        public Container(bool isHeadless = false)
+        public WasteContainer()
         {
 	        Items = new List<WasteItem>();
 			Slots = new Slot[(int)ContainerSize.x, (int)ContainerSize.y];
@@ -28,14 +24,12 @@ namespace Waste.Storage
 				for ( int y = 0; y < ContainerSize.y; ++y )
 					Slots[x, y] = new Slot()
 					{
-						Container = this,
+						WasteContainer = this,
 						Position = new Vector2(x,y)
 					};
-
-			Window = Host.IsClient ? new ContainerWindow( this, isHeadless ) : null;
         }
-        
-        public bool HasItem( WasteItem item ) => Items.Any(i => i == item);
+
+        public bool HasItem( WasteItem item ) => Items.Contains( item );
         
 		public bool AddItem( WasteItem item, Slot slot )
 		{
@@ -48,7 +42,7 @@ namespace Waste.Storage
 					Slots[(int)slot.Position.x + x,(int)slot.Position.y + y].HasItem = true;
 				}
 			}
-			Window?.AddItem( item, slot.Position );
+			InventoryWindow.AddItem(this, slot, item);
 			return true;
 		}
 

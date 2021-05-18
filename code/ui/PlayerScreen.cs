@@ -18,7 +18,7 @@ namespace Waste.UI
 			
 			using (SceneWorld.SetCurrent(new SceneWorld()))
 			{
-				sceneObject = new AnimSceneObject(Player.Local.GetModel(), Transform.Zero );
+				sceneObject = new AnimSceneObject((Local.Pawn as WastePlayer)?.GetModel(), Transform.Zero );
 				_startTime = Time.Now;
 				Light.Point(Vector3.Up * 10.0f + Vector3.Forward * 100.0f, 200, Color.White * 15000.0f);
 				sceneCapture = SceneCapture.Create("player_view", 512, 512);
@@ -35,8 +35,7 @@ namespace Waste.UI
 
 		private void UpdateAnims()
 		{
-			var player = Player.Local;
-			if ( player == null ) return;
+			if ( Local.Pawn is not WastePlayer player ) return;
 			sceneObject.Update( Time.Now - _startTime );
 			sceneObject.SetAnimParam( "b_grounded", player.GetBoolAnimParam( "b_grounded" ) );
 			sceneObject.SetAnimParam( "b_swim", player.GetBoolAnimParam( "b_swim" ) );

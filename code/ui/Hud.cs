@@ -4,8 +4,9 @@ using Sandbox.UI.Construct;
 
 namespace Waste.UI
 {
-    public class WasteHud : Hud
+    public class WasteHud : HudEntity<RootPanel>
     {
+	    
         public WasteHud()
         {
             if (!IsClient) return; // Are we not a client? Go away.

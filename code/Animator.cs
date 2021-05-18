@@ -11,9 +11,9 @@ namespace Waste
 		{
 		}
 
-		public override void Tick()
+		public override void Simulate()
 		{
-			base.Tick();
+			base.Simulate();
 		}
 
 		public override void DoRotation( Rotation idealRotation )

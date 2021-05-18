@@ -8,12 +8,16 @@ namespace Waste
     {
         public WasteGame()
         {
-            Log.Info("Game Started");
-            if (IsServer)
-                new WasteHud();
+	        new WasteHud();
         }
 
-        public override Player CreatePlayer() => new WastePlayer();
-        
+
+        public override void ClientJoined( Client client )
+        {
+	        base.ClientJoined( client );
+	        var player = new WastePlayer();
+	        client.Pawn = player;
+	        player.Respawn();
+        }
     }
 }

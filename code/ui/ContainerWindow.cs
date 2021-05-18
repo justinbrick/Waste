@@ -11,7 +11,7 @@ namespace Waste.UI
 	public class ContainerWindow : Panel
 	{
 		public Vector2 Size { get; private set; }
-		private Container Container { get; set; } // The container that this is representing.
+		private WasteContainer _wasteContainer; // The container that this is representing.
 		private bool _headless;
 		public bool Headless
 		{
@@ -31,42 +31,30 @@ namespace Waste.UI
 			throw new System.Exception("Container Window Constructed without container reference!");
         }
         
-        public ContainerWindow( Container container, bool isHeadless = false )
+        public ContainerWindow( WasteContainer wasteContainer, bool isHeadless = false )
         {
 	        Host.AssertClient();
 	        StyleSheet.Load("/ui/ContainerWindow.scss");
 			var titleBar = Add.Panel( "title_bar" ); // TODO: Use title bar
 			titleBar.Add.Panel("exit_button");
-			Size = container.ContainerSize;
+			Size = wasteContainer.ContainerSize;
 			Headless = isHeadless;
-			Container = container;
+			_wasteContainer = wasteContainer;
 			Style.Width = Length.Pixels( SlotWindow.SLOT_SIZE * Size.x + 12 );
 			Style.Height = Length.Pixels( SlotWindow.SLOT_SIZE * Size.y + 12 );
 			// For some reason, you need to do this backwards or the slots will reverse themselves.
-			for ( int y = 0; y < container.ContainerSize.y; ++y )
+			for ( int y = 0; y < wasteContainer.ContainerSize.y; ++y )
 			{
-				for ( int x = 0; x < container.ContainerSize.x; ++x )
+				for ( int x = 0; x < wasteContainer.ContainerSize.x; ++x )
 				{
-					container.Slots[x, y].Window.Parent = this;
+					wasteContainer.Slots[x, y].Window.Parent = this;
 				}
 			}
         }
 
-        public void AddItem(WasteItem item, Vector2 position)
-        {
-	        item.Icon ??= Icon.GenerateIcon(item);
-	        var icon = item.Icon;
-	        var slot = Container.Slots[(int)position.x, (int)position.y].Window;
-	        icon.Parent = this;
-	        icon.Container = this;
-	        icon.Style.Left = Length.Pixels( SlotWindow.SLOT_SIZE * position.x );
-	        icon.Style.Top = Length.Pixels( SlotWindow.SLOT_SIZE * position.y );
-        }
-        
-		public void Close()
+        public void Close()
 		{
 			if ( !Headless ) return; // If this is not headless we don't want the ability to close it.
 		}
-		
-    }
+	}
 }
